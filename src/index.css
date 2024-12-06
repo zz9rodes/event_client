@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.p-carousel-indicator-active 
+.p-carousel-indicator-button
+{
+    background: #7c3aed !important;
+    /* @apply text-violet-600 !important */
+}
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.p-overlay-mask{
+  @apply bg-bacdrop_modal !important
+}
+
+
+.p-drawer-content{
+  padding: 0 !important;
+}
+
+.p-drawer {
+  @apply w-64 sm:w-80 md:w-96 rounded-[20px] overflow-hidden !important
+}
+
+.p-drawer-header{
+  @apply hidden !important
+}
