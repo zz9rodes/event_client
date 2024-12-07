@@ -7,6 +7,7 @@ import SendMail from '@/components/auth/sendMail.vue';
 import MainLayout from '@/components/global/MainLayout.vue';
 import AuthLayout from '@/components/auth/AuthLayout.vue';
 import ListEventPage from '@/views/ListEventPage.vue';
+import FromCreate_UpdateEvent from '@/components/Events/FromCreate_UpdateEvent.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,9 +50,24 @@ const router = createRouter({
       component:MainLayout,
       children:[
         {
-          path:'/events',
+          path:'events-list',
           name:"events",
           component:ListEventPage
+        },
+        {
+          path:'companies',
+          name:"companies",
+        },
+        {
+          path:"companies/:id",
+          name:"company",
+          children:[
+            {
+              path:'create-event',
+              name:'create-event',
+              component:FromCreate_UpdateEvent
+            }
+          ]
         }
       ]
     }
