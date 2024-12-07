@@ -21,7 +21,7 @@
 }
 
 .p-overlay-mask{
-  @apply bg-bacdrop_modal !important
+  @apply bg-bacdrop_modal   backdrop-blur !important
 }
 
 
@@ -30,7 +30,7 @@
 }
 
 .p-drawer {
-  @apply w-64 sm:w-80 md:w-96 rounded-[20px] overflow-hidden !important
+  @apply w-64 sm:w-80 md:w-96 rounded-[20px] overflow-hidden  !important
 }
 
 .p-drawer-header{
