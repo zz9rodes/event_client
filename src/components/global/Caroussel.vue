@@ -1,15 +1,17 @@
 <template>
-        <Carousel class="" :value="products" :numVisible="2" :numScroll="1" :responsiveOptions="responsiveOptions" circular :autoplayInterval="3000">
-            <template #item="slotProps">
-                <div class="p-4 m-2 rounded border-surface-200 dark:border-surface-700">
-                    <div class="mb-4">
-                        <div class="relative mx-auto">
-                            <img :src="'https://i.pinimg.com/474x/7b/35/d7/7b35d705acbf5f92cb94a20b2ce91f41.jpg'" :alt="slotProps.data.name" class="rounded " />
-                        </div>
+    <Carousel class="" :value="products" :numVisible="2" :numScroll="1" :responsiveOptions="responsiveOptions" circular
+        :autoplayInterval="3000">
+        <template #item="slotProps">
+            <div class="p-4 m-2 rounded border-surface-200 dark:border-surface-700">
+                <div class="mb-4">
+                    <div class="relative mx-auto">
+                        <img :src="'https://i.pinimg.com/474x/7b/35/d7/7b35d705acbf5f92cb94a20b2ce91f41.jpg'"
+                            :alt="slotProps.data.name" class="rounded " />
                     </div>
                 </div>
-            </template>
-        </Carousel>
+            </div>
+        </template>
+    </Carousel>
 </template>
 
 <script setup>
@@ -73,7 +75,6 @@ onMounted(() => {
 
 
 <style scoped>
-
 /* .p-carousel-indicator-active 
 .p-carousel-indicator-button
 {
