@@ -45,7 +45,7 @@
 
     <!-- Main Content Area -->
     <div class="flex flex-col flex-1 overflow-hidden">
-      <main class="flex-1 m-2 overflow-x-hidden overflow-y-auto bg-gray-100">
+      <main class="flex-1 m-2 overflow-x-hidden overflow-y-auto bg-gray-100 pb-14 sm:pb-0">
         <RouterView />
       </main>
 
