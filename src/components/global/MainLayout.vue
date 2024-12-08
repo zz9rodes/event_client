@@ -50,7 +50,7 @@
       </main>
 
       <!-- Mobile Navigation Bar -->
-      <nav class="fixed bottom-0 left-0 right-0 px-2 bg-white border-t border-gray-200 sm:hidden">
+      <nav class="fixed bottom-0 left-0 right-0 px-2 bg-white border-t border-gray-200 sm:hidden z-[460]">
         <div class="flex items-center justify-around h-16 gap-1">
           <SidebarItem @click.prevent="currentRoute = item.name" v-for="item in navItems" :key="item.name" :item="item"
             :is-expanded="false" :is-active="isActive(item.name)" class="flex-1" />
@@ -66,7 +66,7 @@
     <!-- Mobile User Menu -->
     <Transition name="fade">
       <div v-if="isUserMenuOpen" @click.self="logout"
-        class="fixed inset-0 z-50 bg-bacdrop_modal bg-opacity-90 backdrop-blur">
+        class="fixed inset-0 bg-bacdrop_modal bg-opacity-90 backdrop-blur z-[470] ">
         <div class="absolute left-0 right-0 p-4 mx-2 bg-white rounded-t-lg bottom-16">
           <div class="flex items-center mb-4">
             <img class="w-10 h-10 mr-3 rounded-full"
