@@ -1,6 +1,7 @@
 <template>
-    <div class="min-h-screen px-4 bg-gray-100 sm:px-6 lg:px-8">
-        <div class="inline-flex items-center justify-between w-full px-8 py-6">
+    <Toast />
+    <div class="grid justify-center min-h-screen px-4 bg-gray-100 sm:px-6 lg:px-8">
+        <div class="inline-flex items-center justify-between w-full px-8 py-6 2xl:w-5/6">
             <h1 class="text-xl font-bold md:text-3xl text-violet-600">Build New Event
 
             </h1>
@@ -8,15 +9,14 @@
                 <button class="p-2 px-4 text-white rounded-md bg-violet-600">Save</button>
             </div>
         </div>
-        <div class="p-8">
+        <div class="p-8 2xl:w-5/6">
             <form @submit.prevent="submitEvent" class="space-y-8">
                 <div class="grid grid-cols-1 gap-8 md:grid-cols-2 ">
                     <div class="space-y-6">
                         <div>
                             <label for="title" class="block text-sm font-medium text-gray-700">Event Title</label>
                             <input id="title" v-model="event.title" type="text" required
-                                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none rounded-md appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-
+                                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
                                 placeholder="Enter event title" />
                         </div>
 
@@ -24,34 +24,30 @@
                             <label for="description" class="block text-sm font-medium text-gray-700">Event
                                 Description</label>
                             <textarea id="description" v-model="event.description" rows="4"
-                            class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none rounded-md appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-
+                                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
                                 placeholder="Describe your event..."></textarea>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
-                                <input id="date" v-model="event.date" type="date" required
-                                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none rounded-md appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                                 />
+                                <input id="date" v-model="event.date" type="date" :min="nowDate" required
+                                    class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm" />
                             </div>
                             <div>
                                 <label for="time" class="block text-sm font-medium text-gray-700">Time</label>
                                 <input id="time" v-model="event.time" type="time" required
-                                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none rounded-md appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-
-                                  />
+                                    class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm" />
                             </div>
                         </div>
 
                         <div>
                             <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
                             <input id="location" disabled v-model="event.location.name" type="text" required
-                            class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none rounded-md appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
+                                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
                                 placeholder="Event Location" />
                         </div>
-                    
+
                     </div>
 
                     <div class="space-y-6">
@@ -84,14 +80,14 @@
                         </div>
 
                         <div v-if="event.pricing === 'paid'">
-                            <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+                            <label for="price" class="block text-sm font-medium text-gray-700">Price (Fr)</label>
                             <div class="relative mt-1 rounded-md shadow-sm">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                     <span class="text-gray-500 sm:text-sm">$</span>
                                 </div>
                                 <input id="price" v-model="event.price" type="number" min="0" step="0.01" required
-                                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none rounded-md appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                                placeholder="0.00" />
+                                    class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
+                                    placeholder="0.00" />
                             </div>
                         </div>
 
@@ -99,6 +95,7 @@
                             <label for="file-upload" class="block mb-2 text-sm font-medium text-gray-700">
                                 Event Files
                             </label>
+
                             <div class="flex items-center justify-center w-full">
                                 <label for="file-upload"
                                     class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-none cursor-pointer bg-gray-50 hover:bg-gray-100">
@@ -113,12 +110,12 @@
                                         </p>
                                         <p class="text-xs text-gray-500">PNG, JPG, PDF up to 10MB</p>
                                     </div>
-                                    <input id="file-upload" type="file" accept="image/* , video/*" class="hidden" @change="handleFileUpload"
-                                        multiple maxlength="2" />
+                                    <input id="file-upload" type="file" accept="image/* , video/*" class="hidden"
+                                        @change="handleFileUpload" multiple maxlength="2" />
                                 </label>
                             </div>
                         </div>
-
+                        
                         <div v-if="event.files.length > 0" class="mt-4">
                             <h3 class="mb-2 text-lg font-medium text-gray-900">Attached Files:</h3>
                             <Gallery :images="event.files" :removable="true" />
@@ -134,11 +131,23 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import WordMap from '../global/WordMap.vue';
-import { removeFile } from '@/utils';
 import Gallery from '../global/Gallery.vue';
+import { AppwriteuploadFile } from '@/app_write/files';
+import Toast from 'primevue/toast';
+import { useModalStore } from '@/stores/modal';
+import { formatDateToYYYYMMDD } from '@/utils';
+
+const modal = useModalStore()
+
+import { useToast } from "primevue/usetoast";
+const toast = useToast();
+
+
 
 const categories = ['Music', 'Sports', 'Technology', 'Art', 'Food', 'Business']
-const markePosition=null /**ref([3.864255,11.562471])*/
+const markePosition = null
+
+const nowDate=formatDateToYYYYMMDD()
 
 
 const event = reactive({
@@ -147,9 +156,9 @@ const event = reactive({
     date: '',
     time: '',
     location: {
-        name:"",
-        lat:'',
-        log:''
+        name: "",
+        lat: '',
+        log: ''
     },
     selectedCategories: [],
     pricing: 'free',
@@ -157,16 +166,45 @@ const event = reactive({
     files: []
 })
 
-const HandleSetmarker=(data)=>{
-    event.location=data
+const HandleSetmarker = (data) => {
+    event.location = data
 }
 
 
-const handleFileUpload = (e) => {
-    const files = Array.from(e.target.files)
-    if(files.length<=5){
-        event.files.push(...files)
-    }
+const handleFileUpload = async (e) => {
+    modal.showModal();  // Ouvrir le modal
+    console.log("après le show modal");
+
+    const file_base_url = import.meta.env.VITE_APP_WRITE_FILE_BASE_URL;
+    const bucket_id = import.meta.env.VITE_APP_WRITE_BUCKET_ID;
+    const project_id = import.meta.env.VITE_APP_WRITE_PROJECT_ID;
+
+    const files = Array.from(e.target.files);
+
+    // Envoi des fichiers en parallèle
+    const uploadPromises = files.map(async (file) => {
+        const data = await AppwriteuploadFile(file);
+        console.log(data);
+
+        if (data.isCreate) {
+
+            const newFile = {
+                url: `${file_base_url}/${data.file.bucketId}/files/${data.file.$id}/view?project=${project_id}`,
+                title: data.file.$id,
+                type: data.file.mimeType
+            };
+            event.files.push(newFile);
+            toast.add({ severity: 'success', summary: 'Success', detail: data.message, life: 3000 });
+        }
+        else {
+            toast.add({ severity: 'error', summary: 'Error', detail: data.message, life: 3000 });
+        }
+    });
+
+    // Attendre que tous les uploads soient terminés
+    await Promise.all(uploadPromises);
+
+    modal.closeModal();  // Fermer le modal après les uploads
 }
 
 
@@ -176,9 +214,7 @@ const isImage = (file) => {
     return file.type.startsWith('image/')
 }
 
-const getFilePreview = (file) => {
-    return URL.createObjectURL(file)
-}
+
 
 const submitEvent = () => {
     console.log('Event submitted:', event)
