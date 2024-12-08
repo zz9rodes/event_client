@@ -36,3 +36,8 @@
 .p-drawer-header{
   @apply hidden !important
 }
+/* Leaflet libraies */
+
+.leaflet-top, .leaflet-bottom{
+  z-index: 450 !important;
+}
