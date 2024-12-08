@@ -1,10 +1,12 @@
 <template>
+    <Toast />
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
         <div v-for="(image, index) in displayedImages" :key="index"
             class="relative overflow-hidden rounded-lg shadow-md aspect-square">
             <img :src="image.url" :alt="image.alt"
                 class="object-cover w-full h-full transition-transform duration-300 hover:scale-110">
-            <button v-if="removable" type="button" @click="EventRemoveFile(index)" class="absolute top-0 right-0 p-2">
+            <button v-if="removable" type="button" @click="EventRemoveFile(index, image.title)"
+                class="absolute top-0 right-0 p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 p-1 text-white bg-red-500 rounded-full"
                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -21,6 +23,10 @@
 <script setup>
 import { computed } from 'vue';
 import { removeFile } from '@/utils';
+import { AppwriteDeleteFile } from '@/app_write/files';
+import { Toast } from 'primevue';
+import { useToast } from "primevue/usetoast";
+import { useModalStore } from '@/stores/modal'
 
 const props = defineProps({
     images: {
@@ -38,8 +44,23 @@ const props = defineProps({
     }
 });
 
-const EventRemoveFile = (index) => {
-    removeFile(props.images, index)
+const toast = useToast();
+const modal = useModalStore()
+
+
+const EventRemoveFile = async (index, fileId) => {
+    modal.showModal()
+
+    const data = await AppwriteDeleteFile(fileId)
+    if (data.isdeleted) {
+        removeFile(props.images, index)
+        toast.add({ severity: 'success', summary: 'Success', detail: data.message, life: 3000 });
+    }
+    else {
+        toast.add({ severity: 'error', summary: 'Error', detail: data.message, life: 3000 });
+    }
+    modal.closeModal()
+
 }
 
 const displayedImages = computed(() => {
