@@ -6,8 +6,15 @@ import Register from '@/components/auth/Register.vue';
 import SendMail from '@/components/auth/sendMail.vue';
 import MainLayout from '@/components/global/MainLayout.vue';
 import AuthLayout from '@/components/auth/AuthLayout.vue';
-import ListEventPage from '@/views/ListEventPage.vue';
+import ListEventPage from '@/views/Events/ListEventPage.vue';
 import FromCreate_UpdateEvent from '@/components/Events/FromCreate_UpdateEvent.vue';
+import FormCreateCompany from '@/components/Companies/FormCreateCompany.vue';
+import ListCompaniesPage from '@/views/Companies/ListCompaniesPage.vue';
+import CompanyDetailsPage from '@/views/Companies/CompanyDetailsPage.vue';
+import CompanyDashboardPages from '@/views/Companies/CompanyDashboardPages.vue';
+import CompanyEventsList from '@/views/Companies/CompanyEventsListPages.vue';
+import CompanyAdminsPage from '@/views/Companies/CompanyAdminsPage.vue';
+import CompanySettingPage from '@/views/Companies/CompanySettingPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,17 +64,39 @@ const router = createRouter({
         {
           path:'companies',
           name:"companies",
+          component:ListCompaniesPage
         },
         {
-          path:"companies/:id",
+          path:"companies/:compainy_id",
           name:"company",
+          component:CompanyDetailsPage,
           children:[
             {
-              path:'create-event',
-              name:'create-event',
-              component:FromCreate_UpdateEvent
+              path:'companies-events',
+              name:'companies-events',
+              component:CompanyEventsList
+            },
+            {
+              path:'companies-dashboard',
+              name:'companies-dashboard',
+              component:CompanyDashboardPages
+            },
+            {
+              path:'companies-admins',
+              name:'companies-admins',
+              component:CompanyAdminsPage
+            },
+            {
+              path:'companies-setting',
+              name:'companies-setting',
+              component:CompanySettingPage
             }
           ]
+        },
+        {
+          path:'companies/:id/create-event',
+          name:'create-event',
+          component:FromCreate_UpdateEvent
         }
       ]
     }
