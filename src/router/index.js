@@ -15,6 +15,10 @@ import CompanyDashboardPages from '@/views/Companies/CompanyDashboardPages.vue';
 import CompanyEventsList from '@/views/Companies/CompanyEventsListPages.vue';
 import CompanyAdminsPage from '@/views/Companies/CompanyAdminsPage.vue';
 import CompanySettingPage from '@/views/Companies/CompanySettingPage.vue'
+import EventDetailsPage from '@/views/Events/EventDetailsPage.vue';
+import EventPages from '@/views/Events/EventPages.vue';
+import EventSubcribtionPage from '@/views/Events/EventSubcribtionPage.vue';
+import AppProfile from '@/components/global/AppProfile.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,78 +29,100 @@ const router = createRouter({
       component: LandingPage,
     },
     {
-      path: '/auth', 
+      path: '/auth',
       name: 'auth',
       component: AuthLayout,
       children: [
         {
-          path: 'login', 
-          name: 'login', 
+          path: 'login',
+          name: 'login',
           component: Login,
         },
         {
-          path: 'reset-password', 
+          path: 'reset-password',
           name: 'reset-password',
           component: ResetPassword,
         },
         {
-          path: 'register', 
+          path: 'register',
           name: 'register',
           component: Register,
         },
         {
-          path: 'send-mail', 
+          path: 'send-mail',
           name: 'send-mail',
           component: SendMail,
         },
       ],
     },
     {
-      path:"/account",
-      name:"account",
-      component:MainLayout,
-      children:[
+      path: "/account",
+      name: "account",
+      component: MainLayout,
+      children: [
         {
-          path:'events-list',
-          name:"events",
-          component:ListEventPage
+          path:'profile',
+          name:'profile',
+          component:AppProfile
         },
         {
-          path:'companies',
-          name:"companies",
-          component:ListCompaniesPage
+          path: 'events-list',
+          name: "events",
+          component: ListEventPage
         },
         {
-          path:"companies/:compainy_id",
-          name:"company",
-          component:CompanyDetailsPage,
-          children:[
+          path: 'companies',
+          name: "companies",
+          component: ListCompaniesPage
+        },
+        {
+          path: "companies/:compainy_id",
+          name: "company",
+          component: CompanyDetailsPage,
+          children: [
             {
-              path:'companies-events',
-              name:'companies-events',
-              component:CompanyEventsList
+              path: 'companies-events',
+              name: 'companies-events',
+              component: CompanyEventsList
             },
             {
-              path:'companies-dashboard',
-              name:'companies-dashboard',
-              component:CompanyDashboardPages
+              path: 'companies-dashboard',
+              name: 'companies-dashboard',
+              component: CompanyDashboardPages
             },
             {
-              path:'companies-admins',
-              name:'companies-admins',
-              component:CompanyAdminsPage
+              path: 'companies-admins',
+              name: 'companies-admins',
+              component: CompanyAdminsPage
             },
             {
-              path:'companies-setting',
-              name:'companies-setting',
-              component:CompanySettingPage
+              path: 'companies-setting',
+              name: 'companies-setting',
+              component: CompanySettingPage
             }
           ]
         },
         {
-          path:'companies/:id/create-event',
-          name:'create-event',
-          component:FromCreate_UpdateEvent
+          path: 'companies/:compainy_id/create-event',
+          name: 'create-event',
+          component: FromCreate_UpdateEvent
+        },
+        {
+          path: 'companies/:compainy_id/event/:event_id',
+          name: 'event',
+          component: EventPages /*EventDetailsPage*/,
+          children:[
+            {
+              path:'details',
+              name:'event-detail',
+              component:EventDetailsPage
+            },
+            {
+              path:'subscribtions',
+              name:'event-subscribtions',
+              component:EventSubcribtionPage
+            }
+          ]
         }
       ]
     }

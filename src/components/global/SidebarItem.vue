@@ -1,6 +1,6 @@
 <template>
-  <a href="#"
-    class="flex items-center px-2 py-2 text-sm font-medium rounded-md group hover:bg-violet-50 hover:text-violet-600"
+  <div 
+    class="flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer group hover:bg-violet-50 hover:text-violet-600"
     :class="[
       isActive ? 'bg-violet-50 text-violet-600' : 'text-gray-600'
     ]">
@@ -13,11 +13,12 @@
     ]">
       {{ item.label }}
     </span>
-  </a>
+  </div>
 </template>
 
 <script setup>
 import { computed } from 'vue'
+import AppLink from './AppLink.vue';
 
 const props = defineProps({
   item: {
