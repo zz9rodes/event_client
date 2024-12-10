@@ -1,5 +1,5 @@
 <template>
-        <Toast />
+    <Toast />
     <div class="p-6 bg-white shadow-md">
         <h2 class="mb-6 text-2xl font-bold text-violet-600">Create New Company</h2>
         <form @submit.prevent="handleSubmit" class="space-y-6">
@@ -64,17 +64,17 @@ const isLoader = ref(false)
 
 const imagePreview = ref(null);
 
-const handleImageUpload =  async (event) => {
+const handleImageUpload = async (event) => {
     const file = event.target.files[0];
-    const data= await AppwriteuploadFile(file)
-    if(data.isCreate){
-       company.coverImage = file;
+    const data = await AppwriteuploadFile(file)
+    if (data.isCreate) {
+        company.coverImage = file;
 
     }
-    
-   };
 
-   const handleFileUpload = async (e) => {
+};
+
+const handleFileUpload = async (e) => {
 
     const file_base_url = import.meta.env.VITE_APP_WRITE_FILE_BASE_URL;
     const bucket_id = import.meta.env.VITE_APP_WRITE_BUCKET_ID;
@@ -126,6 +126,3 @@ const handleSubmit = () => {
 <style scoped>
 /* No additional styles needed */
 </style>
-
-
-
