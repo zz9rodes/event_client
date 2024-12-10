@@ -110,7 +110,7 @@
                                         </p>
                                         <p class="text-xs text-gray-500">PNG, JPG, PDF up to 10MB</p>
                                     </div>
-                                    <input id="file-upload" type="file" accept="image/* , video/*" class="hidden"
+                                    <input id="file-upload" type="file" accept="image/* , video/mp4" class="hidden"
                                         @change="handleFileUpload" multiple maxlength="2" />
                                 </label>
                             </div>
