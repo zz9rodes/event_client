@@ -1,13 +1,12 @@
 <template>
     <div>
-      <h1 class="text-5xl ">Event List</h1>
+      <ListCompaniesEvent/>
     </div>
   </template>
   
-  <script>
-  export default {
-  
-  }
+  <script setup>
+  import ListCompaniesEvent from '@/components/Events/ListCompaniesEvent.vue';
+
   </script>
   
   <style>
