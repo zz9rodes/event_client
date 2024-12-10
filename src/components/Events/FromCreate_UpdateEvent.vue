@@ -115,7 +115,7 @@
                                 </label>
                             </div>
                         </div>
-                        
+
                         <div v-if="event.files.length > 0" class="mt-4">
                             <h3 class="mb-2 text-lg font-medium text-gray-900">Attached Files:</h3>
                             <Gallery :images="event.files" :removable="true" />
@@ -147,7 +147,7 @@ const toast = useToast();
 const categories = ['Music', 'Sports', 'Technology', 'Art', 'Food', 'Business']
 const markePosition = null
 
-const nowDate=formatDateToYYYYMMDD()
+const nowDate = formatDateToYYYYMMDD()
 
 
 const event = reactive({
