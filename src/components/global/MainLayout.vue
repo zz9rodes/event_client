@@ -19,7 +19,7 @@
       <!-- Navigation Menu -->
       <nav class="px-2 mt-5">
         <div class="space-y-1">
-          <SidebarItem @click.prevent="currentRoute = item.name" v-for="item in navItems" :key="item.name" :item="item"
+          <SidebarItem @click.prevent="RouteChangeEvent(item)" v-for="item in navItems" :key="item.name" :item="item"
             :is-expanded="isExpanded" :is-active="isActive(item.name)" />
         </div>
       </nav>
@@ -52,7 +52,7 @@
       <!-- Mobile Navigation Bar -->
       <nav class="fixed bottom-0 left-0 right-0 px-2 bg-white border-t border-gray-200 sm:hidden z-[460]">
         <div class="flex items-center justify-around h-16 gap-1">
-          <SidebarItem @click.prevent="currentRoute = item.name" v-for="item in navItems" :key="item.name" :item="item"
+          <SidebarItem @click.prevent="RouteChangeEvent(item)" v-for="item in navItems" :key="item.name" :item="item"
             :is-expanded="false" :is-active="isActive(item.name)" class="flex-1" />
           <button @click="toggleUserMenu()" class="flex flex-col items-center justify-center flex-1">
             <img class="w-6 h-6 rounded-full"
@@ -67,15 +67,21 @@
     <Transition name="fade">
       <div v-if="isUserMenuOpen" @click.self="logout"
         class="fixed inset-0 bg-bacdrop_modal bg-opacity-90 backdrop-blur z-[470] ">
-        <div class="absolute left-0 right-0 p-4 mx-2 bg-white rounded-t-lg bottom-16">
-          <div class="flex items-center mb-4">
-            <img class="w-10 h-10 mr-3 rounded-full"
-              src="https://i.pinimg.com/474x/48/28/6b/48286ba9a0cc30a49005693d6134f82b.jpg" alt="User avatar" />
-            <div>
-              <p class="text-sm font-medium text-gray-700">John Doe</p>
-              <p class="text-xs text-gray-500">john.doe@example.com</p>
+        <div class="absolute right-0 p-4 mx-2 bg-white rounded-t-lg top-5">
+          <div class="flex justify-between">
+            <div class="flex items-center mb-4">
+              <img class="w-10 h-10 mr-3 rounded-full"
+                src="https://i.pinimg.com/474x/48/28/6b/48286ba9a0cc30a49005693d6134f82b.jpg" alt="User avatar" />
+              <div>
+                <p class="text-sm font-medium text-gray-700">John Doe</p>
+                <p class="text-xs text-gray-500">john.doe@example.com</p>
+              </div>
             </div>
+            <span @click="RouteChangeEvent(navItems[2])">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cursor-pointer lucide lucide-circle-arrow-out-up-right"><path d="M22 12A10 10 0 1 1 12 2"/><path d="M22 2 12 12"/><path d="M16 2h6v6"/></svg>
+            </span>
           </div>
+
           <button @click="logout"
             class="w-full px-4 py-2 text-white transition-colors rounded-md bg-violet-600 hover:bg-violet-700">
             Log out
@@ -90,7 +96,9 @@
 import { ref, computed, onMounted, onBeforeUnmount } from "vue";
 import SidebarItem from "./SidebarItem.vue";
 import { navItems } from './NavItem'
-import { RouterView } from "vue-router";
+import { RouterView, useRouter } from "vue-router";
+
+const router = useRouter()
 
 const isExpanded = ref(true);
 const currentRoute = ref("events");
@@ -118,6 +126,12 @@ const updateDimensions = () => {
     isUserMenuOpen.value = false;
   }
 };
+
+const RouteChangeEvent = (item) => {
+  isUserMenuOpen.value = false;
+  currentRoute.value = item.name
+  router.push(item.route)
+}
 
 onMounted(() => {
   window.addEventListener("resize", updateDimensions);
