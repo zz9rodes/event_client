@@ -1,15 +1,12 @@
 <template>
-    <div>
-      <h1 class="text-5xl ">Setting </h1>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-  
-  }
-  </script>
-  
-  <style>
-  
-  </style>
+  <div>
+    <CompaniesSettings />
+  </div>
+</template>
+
+<script setup>
+import CompaniesSettings from '@/components/Companies/CompaniesSettings.vue';
+
+</script>
+
+<style></style>
