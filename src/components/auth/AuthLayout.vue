@@ -1,8 +1,7 @@
 <template>
     <div
         class='fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-3 px-6 py-4 bg-white bg-opacity-90 backdrop-blur-sm '>
-        <!-- <img src="../../../public/logo.PNG" class="h-12" alt=""> -->
-        <router-link :to="{name:'register'}">
+        <router-link :to="{name:'home'}">
           <img src="../../../public/logo.PNG" class="h-12" alt="">
         </router-link>
     </div>

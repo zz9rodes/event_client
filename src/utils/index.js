@@ -37,5 +37,15 @@ export const  generateRandomId=(length = 36)=> {
   
     return `${yyyy}-${mm}-${dd}`;
   }
+
+  export const hasEmptyFields = (data) => {
+    return Object.values(data).some(value => value === null || value === '');
+  };
+
+  export const  stringContainsIgnoreCase=(mainString, searchString)=> {
+    return mainString.toLowerCase().includes(searchString.toLowerCase());
+}
+
+
   
   

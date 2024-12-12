@@ -4,7 +4,7 @@
             <div v-for="admin in admins" :key="admin.id"
                 class="overflow-hidden transition-transform duration-300 bg-white rounded-none shadow-lg cursor-pointer group hover:scale-105">
                 <div class="relative h-64">
-                    <img :src="admin.profilePhoto" :alt="admin.name" class="w-full h-full" />
+                    <img :src="admin.avatarUrl" :alt="admin.name" class="w-full h-full" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 </div>
                 <div class="flex justify-between p-4 ">
@@ -24,7 +24,6 @@
                             d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
                 </div>
-
             </div>
         </div>
     </div>

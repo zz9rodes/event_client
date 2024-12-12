@@ -3,7 +3,7 @@
       <!-- Cover Image -->
       <div class="w-full h-64 overflow-hidden md:h-80 lg:h-96">
         <img 
-          :src="company.coverImage" 
+          :src="company.cover" 
           :alt="company.name + ' cover'" 
           class="object-cover w-full h-full"
         />
@@ -24,14 +24,20 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue';
+  import { ref,defineProps,reactive } from 'vue';
   
-  // Sample company data
-  const company = ref({
-    name: 'TechInnovate Solutions',
-    description: 'Pioneering the future of technology',
-    coverImage: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'
-  });
+
+  const props = defineProps({
+    company: {
+        type: reactive({
+            name: '',
+            description: '',
+            cover: null
+        }),
+        required: true
+    }
+})
+
   </script>
   
   <style scoped>

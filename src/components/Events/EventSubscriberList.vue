@@ -93,57 +93,7 @@
         </div>
       
 
-        <!-- Pagination -->
-        <!-- <div class="flex items-center justify-between px-4 py-3 border-t border-gray-200">
-            <div class="flex justify-between flex-1 sm:hidden">
-                <button
-                    class="px-3 py-1 text-sm text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50">
-                    Previous
-                </button>
-                <button
-                    class="px-3 py-1 text-sm text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50">
-                    Next
-                </button>
-            </div>
-            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                <div>
-                    <p class="text-sm text-gray-700">
-                        Showing
-                        <span class="font-medium">1</span>
-                        to
-                        <span class="font-medium">10</span>
-                        of
-                        <span class="font-medium">{{ subscribers.length }}</span>
-                        results
-                    </p>
-                </div>
-                <div>
-                    <nav class="relative z-0 inline-flex -space-x-px rounded-md shadow-sm">
-                        <button
-                            class="relative inline-flex items-center px-2 py-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50">
-                            Previous
-                        </button>
-                        <button
-                            class="relative inline-flex items-center px-3 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50">
-                            1
-                        </button>
-                        <button
-                            class="relative inline-flex items-center px-3 py-1 text-sm font-medium text-purple-600 border border-gray-300 bg-purple-50 hover:bg-purple-100">
-                            2
-                        </button>
-                        <button
-                            class="relative inline-flex items-center px-3 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50">
-                            3
-                        </button>
-                        <button
-                            class="relative inline-flex items-center px-2 py-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50">
-                            Next
-                        </button>
-                    </nav>
-                </div>
-            </div>
-        </div> -->
-    </div>
+       </div>
 </template>
 
 <script setup>

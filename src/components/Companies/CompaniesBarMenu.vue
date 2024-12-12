@@ -2,47 +2,43 @@
   <div class="relative">
     <div class="overflow-x-auto scrollbar-hide">
       <div class="flex p-4 space-x-4 min-w-max">
-        <AppLink :to="menu.route" :name="menu.name" v-for="menu in menus" :key="menu.id" @click="selectMenu(menu)"
-          :class="[
-            'px-4 py-2 text-sm font-medium rounded-full transition-colors duration-200 ease-in-out',
-            selectedMenu === menu.id
-              ? 'bg-violet-600 text-white'
-              : 'bg-gray-100 text-gray-700 hover:bg-violet-100 hover:text-violet-600'
-          ]">
+        <div v-for="menu in menus" :key="menu.id" @click="selectMenu(menu)" :class="[
+          'px-4 py-2 text-sm font-medium cursor-pointer rounded-full transition-colors duration-200 ease-in-out',
+          selectedMenu === menu.id
+            ? 'bg-violet-600 text-white'
+            : 'bg-gray-100 text-gray-700 hover:bg-violet-100 hover:text-violet-600'
+        ]">
           {{ menu.name }}
-        </AppLink>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router';
-import AppLink from '../global/AppLink.vue';
-const route = useRoute();
-const router = useRouter();
+import { ref, defineProps, defineEmits } from 'vue'
+
+const props = defineProps({
+  menus: {
+    type: Array,
+    required: true,
+    default: false
+  }
+})
+
+const emit = defineEmits(['change-menu'])
 
 
-console.log(route);
 
 
-
-const menus =ref ([
-  { id: 1, name: 'Setting', route: { 'name': "companies-setting", params: { compainy_id: route.params.compainy_id } } },
-  { id: 2, name: 'Events', route: { 'name': "companies-events", params: { compainy_id: route.params.compainy_id } } },
-  { id: 3, name: 'Admin', route: { 'name': "companies-admins", params: { compainy_id: route.params.compainy_id } } },
-]
-)
-const selectedMenu = ref(null)
+const selectedMenu = ref(props.menus[0].id)
 
 const selectMenu = (menu) => {
-  console.log(menu,"\n\n")
   selectedMenu.value = menu.id
-  router.push(menu.route)
+  emit('change-menu', menu)
 }
 
-selectMenu(menus.value[0])
+// selectMenu(menus.value[0])
 
 </script>
 

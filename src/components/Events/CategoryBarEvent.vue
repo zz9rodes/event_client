@@ -22,30 +22,20 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue'
+  import { ref,defineProps } from 'vue'
+  const props=defineProps({
+    categories:{
+      type:Array,
+      required:false,
+      default:[]
+    }
+  })
   
-  const categories = [
-    { id: 1, name: 'All' },
-    { id: 2, name: 'Technology' },
-    { id: 3, name: 'Science' },
-    { id: 4, name: 'Health' },
-    { id: 5, name: 'Business' },
-    { id: 6, name: 'Entertainment' },
-    { id: 7, name: 'Sports' },
-    { id: 8, name: 'Politics' },
-    { id: 9, name: 'Environment' },
-    { id: 10, name: 'Education' },
-    { id: 11, name: 'Education' },
-    { id: 112, name: 'Education' },
-    { id: 103, name: 'Education' },
-
-  ]
   
   const selectedCategory = ref(1)
   
   const selectCategory = (category) => {
     selectedCategory.value = category.id
-    // Vous pouvez ajouter ici la logique pour filtrer le contenu en fonction de la catégorie sélectionnée
     console.log('Selected category:', category.name)
   }
   </script>

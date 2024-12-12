@@ -1,13 +1,13 @@
 <template>
-    <Toast />
     <AppModal :is-open="isOpen" :is-loader="true" />
     <div class="flex justify-end px-8 mt-6 text-center">
-        <button @click="handleSubmit"
-            class="px-6 py-2 text-white transition duration-300 ease-in-out rounded-md bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2">
+        <button :disabled="!isSettingChange" @click="handleSubmit"
+            :class="isSettingChange ? ' bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2' : ' bg-gray-200 '"
+            class="px-6 py-2 text-white transition duration-300 ease-in-out rounded-md">
             Save
         </button>
     </div>
-    <div class="px-8 shadow-md rounded-xl">
+    <div class="px-8  rounded-xl">
         <form @submit.prevent="handleSubmit" class="flex flex-col gap-8 md:flex-row">
             <div class="w-full md:w-1/2">
                 <div class="mb-4">
@@ -52,34 +52,53 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, defineProps, watch, onMounted } from 'vue'
+import { useRoute } from 'vue-router';
 import { AppwriteuploadFile } from '@/app_write/files';
-import Toast from 'primevue/toast';
 import AppModal from '@/components/global/AppModal.vue';
-import { useToast } from "primevue/usetoast";
+import { useAuthStore } from '@/stores/auth';
 
+const auth = useAuthStore()
+const route = useRoute()
 
-const formData = reactive({
-    name: '',
-    description: '',
-    file: {
-        url: null,
-        title: null,
-        type: 'img'
+const props = defineProps({
+    company: {
+        type: reactive({
+            name: '',
+            description: '',
+            cover: null
+        }),
+        required: true
     }
 })
-const toast = useToast();
+
+
+let formData = reactive({
+    name: '',
+    description: '',
+    cover: null
+})
+
+formData = props.company
+
 const isOpen = ref(false)
 const preview = ref(null)
+const isSettingChange = ref(false)
 
-const handleSubmit = () => {
-    // Here you would typically send the form data to your backend
+
+const handleSubmit = async () => {
+    isOpen.value = true
+    const company_id = route.params.company_id
+    const data = await auth.api('PUT', `/company/update/${company_id}`, formData)
+    if (data.valid) {
+        window.$toast('success', data.successMessage, data.successMessage)
+    }
+    else {
+        console.log(data)
+    }
+
     console.log('Form submitted:', formData)
-    // Reset form after submission
-    formData.name = ''
-    formData.description = ''
-    formData.file = null
-    preview.value = null
+    isOpen.value = false
 }
 const handleFileUpload = async (e) => {
 
@@ -103,22 +122,42 @@ const handleFileUpload = async (e) => {
                 type: data.file.mimeType
             };
 
-            formData.file = newFile;
+            formData.cover = newFile.url;
 
-            preview.value = formData.file.url
 
-            console.log(preview.value);
             isOpen.value = false
 
-            toast.add({ severity: 'success', summary: 'Success', detail: data.message, life: 3000 });
+            window.$toast('success', 'Success', data.message);
         }
         else {
             isOpen.value = false
-            toast.add({ severity: 'error', summary: 'Error', detail: data.message, life: 3000 });
+            window.$toast('error', 'Error', data.message);
         }
     });
 
     await Promise.all(uploadPromises);
 }
 
+onMounted(() => [
+    preview.value = formData.cover
+
+])
+
+watch(() => formData.cover, (newValue, oldValue) => {
+    console.log(newValue);
+    preview.value = newValue
+    isSettingChange.value = true
+});
+
+watch(() => formData.name, (newValue, oldValue) => {
+    console.log(newValue);
+
+    isSettingChange.value = true
+});
+
+watch(() => formData.description, (newValue, oldValue) => {
+    console.log(newValue);
+
+    isSettingChange.value = true
+});
 </script>

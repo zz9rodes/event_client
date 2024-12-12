@@ -22,13 +22,13 @@
             <label for="email-address" class="sr-only">Email address</label>
             <input id="email-address" name="email" type="email" autocomplete="email" required
               class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-              placeholder="Email address" v-model="email" />
+              placeholder="Email address" v-model="formData.email" />
           </div>
           <div>
             <label for="password" class="sr-only">Password</label>
             <input id="password" name="password" type="password" autocomplete="current-password" required
               class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-              placeholder="Password" v-model="password" />
+              placeholder="Password" v-model="formData.password" />
           </div>
         </div>
 
@@ -71,22 +71,40 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref,reactive } from 'vue'
 import AppLink from '../global/AppLink.vue';
-const email = ref('')
-const password = ref('')
+import { useAuthStore } from '@/stores/auth';
+import { useModalStore } from '@/stores/modal';
+import { useRouter } from 'vue-router';
+
+const router=useRouter()
+const modal=useModalStore()
+
+const auth=useAuthStore()
 const errorMessage = ref('')
 
-const handleSubmit = () => {
-  // Basic validation
-  if (!email.value || !password.value) {
+const formData=reactive({
+  email:"",
+  password:""
+})
+
+const handleSubmit = async () => {
+  modal.showModal()
+  if (!formData.email || !formData.password) {
+    modal.closeModal()
     errorMessage.value = 'Please fill in all fields.'
     return
   }
 
-  console.log('Login attempt with:', { email: email.value, password: password.value })
-  errorMessage.value = ''
-  alert('Login successful! (This is a simulation)')
+  const data= await auth.login(formData)
+  if(data?.valid){
+    modal.closeModal()
+    window.$toast('success', data.successMessage,data.successMessage);
+    router.push({name:'account'})
+  }
+ 
+  modal.closeModal()
+  return 
 }
 </script>
 

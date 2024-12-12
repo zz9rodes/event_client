@@ -41,3 +41,7 @@
 .leaflet-top, .leaflet-bottom{
   z-index: 450 !important;
 }
+
+.p-drawer ,.p-component{
+@apply w-[85%] sm:w-[30%] !important
+}

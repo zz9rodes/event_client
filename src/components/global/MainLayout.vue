@@ -77,8 +77,14 @@
                 <p class="text-xs text-gray-500">john.doe@example.com</p>
               </div>
             </div>
-            <span @click="RouteChangeEvent(navItems[2])">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cursor-pointer lucide lucide-circle-arrow-out-up-right"><path d="M22 12A10 10 0 1 1 12 2"/><path d="M22 2 12 12"/><path d="M16 2h6v6"/></svg>
+            <span @click="RouteChangeEvent(navItems[3])">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="cursor-pointer lucide lucide-circle-arrow-out-up-right">
+                <path d="M22 12A10 10 0 1 1 12 2" />
+                <path d="M22 2 12 12" />
+                <path d="M16 2h6v6" />
+              </svg>
             </span>
           </div>
 

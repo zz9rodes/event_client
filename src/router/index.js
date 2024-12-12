@@ -8,17 +8,17 @@ import MainLayout from '@/components/global/MainLayout.vue';
 import AuthLayout from '@/components/auth/AuthLayout.vue';
 import ListEventPage from '@/views/Events/ListEventPage.vue';
 import FromCreate_UpdateEvent from '@/components/Events/FromCreate_UpdateEvent.vue';
-import FormCreateCompany from '@/components/Companies/FormCreateCompany.vue';
 import ListCompaniesPage from '@/views/Companies/ListCompaniesPage.vue';
 import CompanyDetailsPage from '@/views/Companies/CompanyDetailsPage.vue';
-import CompanyDashboardPages from '@/views/Companies/CompanyDashboardPages.vue';
-import CompanyEventsList from '@/views/Companies/CompanyEventsListPages.vue';
-import CompanyAdminsPage from '@/views/Companies/CompanyAdminsPage.vue';
-import CompanySettingPage from '@/views/Companies/CompanySettingPage.vue'
 import EventDetailsPage from '@/views/Events/EventDetailsPage.vue';
 import EventPages from '@/views/Events/EventPages.vue';
 import EventSubcribtionPage from '@/views/Events/EventSubcribtionPage.vue';
 import AppProfile from '@/components/global/AppProfile.vue';
+import MySubcribtionList from '@/views/Subcriptions/MySubcribtionList.vue';
+import { ref } from 'vue';
+// 
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,12 +58,15 @@ const router = createRouter({
     {
       path: "/account",
       name: "account",
+      meta: {
+        requiresAuth: true
+      },
       component: MainLayout,
       children: [
         {
-          path:'profile',
-          name:'profile',
-          component:AppProfile
+          path: 'profile',
+          name: 'profile',
+          component: AppProfile
         },
         {
           path: 'events-list',
@@ -76,57 +79,64 @@ const router = createRouter({
           component: ListCompaniesPage
         },
         {
-          path: "companies/:compainy_id",
+          path: "companies/:company_id",
           name: "company",
           component: CompanyDetailsPage,
-          children: [
-            {
-              path: 'companies-events',
-              name: 'companies-events',
-              component: CompanyEventsList
-            },
-            {
-              path: 'companies-dashboard',
-              name: 'companies-dashboard',
-              component: CompanyDashboardPages
-            },
-            {
-              path: 'companies-admins',
-              name: 'companies-admins',
-              component: CompanyAdminsPage
-            },
-            {
-              path: 'companies-setting',
-              name: 'companies-setting',
-              component: CompanySettingPage
-            }
-          ]
         },
         {
-          path: 'companies/:compainy_id/create-event',
+          path: 'companies/:company_id/create-event',
           name: 'create-event',
           component: FromCreate_UpdateEvent
         },
         {
-          path: 'companies/:compainy_id/event/:event_id',
+          path: 'companies/:company_id/event/:event_id',
           name: 'event',
           component: EventPages /*EventDetailsPage*/,
-          children:[
+          children: [
             {
-              path:'details',
-              name:'event-detail',
-              component:EventDetailsPage
+              path: 'details',
+              name: 'event-detail',
+              component: EventDetailsPage
             },
             {
-              path:'subscribtions',
-              name:'event-subscribtions',
-              component:EventSubcribtionPage
+              path: 'subscribtions',
+              name: 'event-subscribtions',
+              component: EventSubcribtionPage
             }
           ]
+        },
+        {
+          path: 'my-subscribtions',
+          name: 'subscribtions',
+          component: MySubcribtionList /*EventDetailsPage*/,          
         }
       ]
     }
   ],
 });
 
+const isAuthentificated = () => {
+  const token = ref(localStorage.getItem('token'));
+
+  return token.value ? true : false
+}
+
+router.beforeEach(async (to, from, next) => {
+  console.log(to);
+
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (isAuthentificated()) {
+      next();
+    } else {
+      next({ name: 'login' });
+    }
+  } else if (((to.name === 'login') || (to.name === 'register')) && isAuthentificated()) {
+    next({ name: 'events' });
+  } else {
+    next();
+  }
+});
+
+
 export default router;
+

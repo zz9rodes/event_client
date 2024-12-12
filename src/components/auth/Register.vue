@@ -1,5 +1,5 @@
 <template>
-
+<!-- <Toast/> -->
     <div class="flex items-center justify-center min-h-screen px-4 bg-gray-100 sm:px-6 lg:px-8">
 
         <div class="w-full max-w-md space-y-8">
@@ -20,56 +20,73 @@
                         <label for="first-name" class="sr-only">First Name</label>
                         <input id="first-name" name="firstName" type="text" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            placeholder="First Name" v-model="firstName" />
+                            placeholder="First Name" v-model="formData.firstName" />
                     </div>
                     <div>
                         <label for="last-name" class="sr-only">Last Name</label>
                         <input id="last-name" name="lastName" type="text" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            placeholder="Last Name" v-model="lastName" />
+                            placeholder="Last Name" v-model="formData.lastName" />
                     </div>
                     <div>
                         <label for="email-address" class="sr-only">Email address</label>
                         <input id="email-address" name="email" type="email" autocomplete="email" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            placeholder="Email address" v-model="email" />
+                            placeholder="Email address" v-model="formData.email" />
                     </div>
                     <div>
                         <label for="password" class="sr-only">Password</label>
                         <input id="password" name="password" type="password" autocomplete="new-password" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            placeholder="Password" v-model="password" />
+                            placeholder="Password" minlength="9" v-model="formData.password" />
                     </div>
                     <div>
                         <label for="phone" class="sr-only">Phone</label>
                         <input id="phone" name="phone" type="tel" autocomplete="tel" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            placeholder="Phone" v-model="phone" />
+                            placeholder="Phone" v-model="formData.phoneNumber" />
                     </div>
                     <div>
                         <label for="date-of-birth" class="sr-only">Date of Birth</label>
                         <input id="date-of-birth" name="dateOfBirth" type="date" required
-                            class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            v-model="dateOfBirth" />
+                        class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
+                        v-model="formData.dob" />
                     </div>
+                    <!-- <div>
+                        <label for="adress-location" class="sr-only">Adress Location</label>
+                        <input id="adress-location" name="Adress" type="text" placeholder="Adress" required
+                            class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
+                            v-model="formData.address" />
+                    </div> -->
                 </div>
 
                 <div>
 
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center justify-between mt-1">
                         <label for="avatar" class="cursor-pointer ">
                             <span class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
-                                <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                <img v-if="formData.avatar != null" :src="formData.avatar" alt="" class="w-full h-full ">
+
+                                <svg v-else class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                                     <path
                                         d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                                 </svg>
                             </span>
                         </label>
 
-                        <input type="file" id="avatar" name="avatar" accept="image/*"
+                        <input  type="file" id="avatar" name="avatar" accept="image/*"
                             class="hidden px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
-                            @change="handleAvatarChange" />
-                    </div>
+                            @change="handleFileUpload" />
+
+                            <span class="flex items-center" v-if="!isAllowsLocation">
+                                <p class="text-sm ">
+                                    use your location ? 
+                                </p>
+                                <input type="checkbox" v-model="allowsLocation" @change="getGeolocation"
+                            class="toggle toggle-violet-600 checked:text-violet-600" />
+                    
+                            </span>
+                       </div>
                 </div>
 
                 <div>
@@ -95,44 +112,139 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref,onMounted, reactive } from 'vue'
 import AppLink from '../global/AppLink.vue';
+import { hasEmptyFields } from '@/utils';
+import { AppwriteuploadFile } from '@/app_write/files';
+import { useModalStore } from '@/stores/modal';
+import { Toast } from 'primevue';
+import { useToast } from "primevue/usetoast";
+import { useAuthStore } from '@/stores/auth';
+import { useRouter } from 'vue-router';
+// import AppModal from '../global/AppModal.vue';
+const router=useRouter()
+const auth=useAuthStore()
+const toast = useToast()
 
-const firstName = ref('')
-const lastName = ref('')
-const email = ref('')
-const password = ref('')
-const phone = ref('')
-const dateOfBirth = ref('')
-const avatar = ref(null)
+const formData = reactive({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    phoneNumber: '',
+    dob: '',
+    avatar: "https://i.pinimg.com/736x/4a/26/cd/4a26cdcd5cbd89187dd280d8eff0a9d3.jpg",
+    address: '',
+    location:{
+        lat:"0",
+        long:"0"
+    }
+});
+const isAllowsLocation=ref(false)
 const errorMessage = ref('')
 
-const handleAvatarChange = (event) => {
-    const file = event.target.files[0]
-    if (file) {
-        avatar.value = file
-    }
+const modal = useModalStore()
+
+
+const handleFileUpload = async (e) => {
+    modal.showModal();  
+
+    const file_base_url = import.meta.env.VITE_APP_WRITE_FILE_BASE_URL;
+    const bucket_id = import.meta.env.VITE_APP_WRITE_BUCKET_ID;
+    const project_id = import.meta.env.VITE_APP_WRITE_PROJECT_ID;
+
+    const files = Array.from(e.target.files);
+
+    const uploadPromises = files.map(async (file) => {
+        const data = await AppwriteuploadFile(file);
+
+        if (data.isCreate) {
+
+            const newFile = {
+                url: `${file_base_url}/${data.file.bucketId}/files/${data.file.$id}/view?project=${project_id}`,
+                title: data.file.$id,
+                type: data.file.mimeType
+            };
+            formData.avatar = newFile.url;
+            toast.add({ severity: 'success', summary: 'Success', detail: data.message, life: 3000 });
+        }
+        else {
+            toast.add({ severity: 'error', summary: 'Error', detail: data.message, life: 3000 });
+        }
+    });
+
+    await Promise.all(uploadPromises);
+
+    modal.closeModal(); 
 }
 
-const handleSubmit = () => {
-    if (!firstName.value || !lastName.value || !email.value || !password.value || !phone.value || !dateOfBirth.value) {
+const handleSubmit =  async () => {
+    modal.showModal()
+    if((!formData.address || formData.address=='') && (formData.location.lat!=0 || formData.location.long!=0)){
+      await   fetchLocationInfo(formData.location.lat,formData.location.long)
+    }
+    if (hasEmptyFields(formData)) {
+        modal.closeModal()
         errorMessage.value = 'Please fill in all required fields.'
         return
     }
-
-    // For this example, we'll just simulate a successful registration
-    console.log('Registration attempt with:', {
-        firstName: firstName.value,
-        lastName: lastName.value,
-        email: email.value,
-        password: password.value,
-        phone: phone.value,
-        dateOfBirth: dateOfBirth.value,
-        avatar: avatar.value
-    })
-    errorMessage.value = ''
-    alert('Registration successful! (This is a simulation)')
+    const data= await auth.register(formData)
+    if(data?.status==201){
+        modal.closeModal()
+        window.$toast('success', data.successMessage,data.successMessage);
+        router.push({name:'login'})
+    }
+    
+    modal.closeModal()
 }
+
+
+async function getGeolocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                isAllowsLocation.value=true
+                formData.location.lat = `${position.coords.latitude}`;
+               formData.location.long = `${position.coords.longitude}`;
+                console.log(`Latitude: ${formData.location.lat}, Longitude: ${formData.location.long}`);
+                return location;
+            },
+            (error) => {
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        console.error("User denied the request for Geolocation.");
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        console.error("Location information is unavailable.");
+                        break;
+                    case error.TIMEOUT:
+                        console.error("The request to get user location timed out.");
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        console.error("An unknown error occurred.");
+                        break;
+                }
+            }
+        );
+    } else {
+        console.error("Geolocation is not supported by this browser.");
+    }
+}
+
+async function fetchLocationInfo(lat, lng) {
+    try {
+      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`);
+      const data = await response.json();
+      formData.address=data.display_name || 'Unknown location'
+    } catch (error) {
+      console.error('Error fetching location data:', error);
+     return error
+    }
+  }
+
+onMounted(() => {
+  getGeolocation();
+});
 </script>
 
 <style>

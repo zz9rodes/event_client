@@ -1,11 +1,10 @@
 <template>
-    <Toast />
     <div class="grid justify-center min-h-screen px-4 bg-gray-100 sm:px-6 lg:px-8">
         <div class="inline-flex items-center justify-between w-full px-8 py-6 2xl:w-5/6">
             <h1 class="text-xl font-bold md:text-3xl text-violet-600">Build New Event
 
             </h1>
-            <div>
+            <div @click="submitEvent">
                 <button class="p-2 px-4 text-white rounded-md bg-violet-600">Save</button>
             </div>
         </div>
@@ -14,10 +13,10 @@
                 <div class="grid grid-cols-1 gap-8 md:grid-cols-2 ">
                     <div class="space-y-6">
                         <div>
-                            <label for="title" class="block text-sm font-medium text-gray-700">Event Title</label>
-                            <input id="title" v-model="event.title" type="text" required
+                            <label for="title" class="block text-sm font-medium text-gray-700">Event Name</label>
+                            <input id="title" v-model="event.name" type="text" required
                                 class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                                placeholder="Enter event title" />
+                                placeholder="Enter event Name" />
                         </div>
 
                         <div>
@@ -31,19 +30,19 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
-                                <input id="date" v-model="event.date" type="date" :min="nowDate" required
+                                <input id="datee" v-model="event.date_time" type="date" :min="nowDate" required
                                     class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm" />
                             </div>
                             <div>
                                 <label for="time" class="block text-sm font-medium text-gray-700">Time</label>
-                                <input id="time" v-model="event.time" type="time" required
+                                <input id="time" v-model="event.duration" type="time" required
                                     class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm" />
                             </div>
                         </div>
 
                         <div>
                             <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
-                            <input id="location" disabled v-model="event.location.name" type="text" required
+                            <input id="location" disabled v-model="event.address" type="text" required
                                 class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
                                 placeholder="Event Location" />
                         </div>
@@ -56,9 +55,9 @@
                             <div class="space-y-2">
                                 <label v-for="category in categories" :key="category"
                                     class="inline-flex items-center mr-4">
-                                    <input type="checkbox" :value="category" v-model="event.selectedCategories"
+                                    <input type="checkbox" :value="category.id" v-model="event.categories"
                                         class="w-5 h-5 form-checkbox text-violet-600" />
-                                    <span class="ml-2 text-gray-700">{{ category }}</span>
+                                    <span class="ml-2 text-gray-700">{{ category.name }}</span>
                                 </label>
                             </div>
                         </div>
@@ -89,6 +88,13 @@
                                     class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
                                     placeholder="0.00" />
                             </div>
+                        </div>
+
+                        <div>
+                            <label for="location" class="block text-sm font-medium text-gray-700">places</label>
+                            <input id="location" v-model="event.places" type="number" required
+                                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
+                                placeholder="Event Location" />
                         </div>
 
                         <div>
@@ -133,47 +139,55 @@ import { reactive, ref } from 'vue'
 import WordMap from '../global/WordMap.vue';
 import Gallery from '../global/Gallery.vue';
 import { AppwriteuploadFile } from '@/app_write/files';
-import Toast from 'primevue/toast';
 import { useModalStore } from '@/stores/modal';
 import { formatDateToYYYYMMDD } from '@/utils';
+import { useAuthStore } from '@/stores/auth';
+import { useRoute, useRouter } from 'vue-router';
+import { hasEmptyFields } from '@/utils';
+
+const route = useRoute()
+const router=useRouter()
 
 const modal = useModalStore()
 
-import { useToast } from "primevue/usetoast";
-const toast = useToast();
+const auth = useAuthStore()
 
 
-
-const categories = ['Music', 'Sports', 'Technology', 'Art', 'Food', 'Business']
+const categories = [{ id: 1, name: 'Music' }, { id: 2, name: 'Sports' }, { id: 3, name: 'Technology' }, { id: 4, name: 'Art' }, { id: 5, name: 'Food' }]
 const markePosition = null
 
 const nowDate = formatDateToYYYYMMDD()
 
 
 const event = reactive({
-    title: '',
+    name: '',
     description: '',
-    date: '',
-    time: '',
+    date_time: '',
+    active: true,
+    duration: '',
+    address: '',
     location: {
-        name: "",
         lat: '',
-        log: ''
+        lon: ''
     },
-    selectedCategories: [],
+    categories: [],
     pricing: 'free',
-    price: null,
+    places: 0,
+    price: 0,
     files: []
 })
 
 const HandleSetmarker = (data) => {
-    event.location = data
+    console.log(data);
+
+    event.location.lat = data.lat
+    event.location.lon = data.lng
+    event.address = data.name
 }
 
 
 const handleFileUpload = async (e) => {
     modal.showModal();  // Ouvrir le modal
-    console.log("après le show modal");
 
     const file_base_url = import.meta.env.VITE_APP_WRITE_FILE_BASE_URL;
     const bucket_id = import.meta.env.VITE_APP_WRITE_BUCKET_ID;
@@ -194,10 +208,10 @@ const handleFileUpload = async (e) => {
                 type: data.file.mimeType
             };
             event.files.push(newFile);
-            toast.add({ severity: 'success', summary: 'Success', detail: data.message, life: 3000 });
+            window.$toast('success', 'Success', data.message);
         }
         else {
-            toast.add({ severity: 'error', summary: 'Error', detail: data.message, life: 3000 });
+            window.$toast('error', 'Error', data.message);
         }
     });
 
@@ -208,26 +222,26 @@ const handleFileUpload = async (e) => {
 }
 
 
+const submitEvent = async () => {
+    const isempty = hasEmptyFields(event)
+    if (!isempty) {
+        modal.showModal()
 
+        const data = await auth.api('POST', `/company/${route.params.company_id}/event/create`, event)
 
-const isImage = (file) => {
-    return file.type.startsWith('image/')
-}
+        if (data.valid) {
+            window.$toast('success', data.successMessage, data.successMessage)
+            router.push({name:'company',params:{company_id:route.params.company_id}})
+        }
+        else {
+            console.log(data)
+        }
 
-
-
-const submitEvent = () => {
-    console.log('Event submitted:', event)
-    event = {
-        title: '',
-        description: '',
-        date: '',
-        time: '',
-        location: '',
-        selectedCategories: [],
-        pricing: 'free',
-        price: null,
-        files: []
+        modal.closeModal()
     }
+    else{
+        window.$toast('error', "Veiller remplir tout les champ", "error",5000)
+    }
+
 }
 </script>
