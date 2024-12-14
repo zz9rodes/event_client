@@ -14,7 +14,9 @@ import App from './App.vue'
 import router from './router'
 import ToastService from 'primevue/toastservice';
 
-
+async function initApp() {
+    await Appwritelogin();
+}
 
 const app = createApp(App)
 
@@ -30,6 +32,8 @@ app.use(ToastService);
 
 
 app.mount('#app')
+initApp()
 
-await Appwritelogin()
+
+// await Appwritelogin()
 
