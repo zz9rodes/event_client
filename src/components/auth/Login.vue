@@ -2,7 +2,6 @@
 
   <div class="flex items-center justify-center min-h-screen px-4 bg-gray-100 sm:px-6 lg:px-8">
     <div class="w-full max-w-md space-y-8">
-      <img src="./../public/logo.PNG" class="h-12" alt="">
       <div>
         <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
           Sign in to your account

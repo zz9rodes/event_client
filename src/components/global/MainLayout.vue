@@ -7,7 +7,7 @@
     ]">
       <!-- Toggle Button -->
       <button class="flex items-center justify-between w-full p-2 rounded-2xl hover:bg-gray-50">
-        <img src="../../../public/logo.PNG" :class="[isExpanded ? 'size-12' : 'size-8']" alt="" />
+        <img src="/logo.png" :class="[isExpanded ? 'size-12' : 'size-8']" alt="" />
         <svg @click="toggleSidebar" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
           class="lucide lucide-chevrons-left-right h-6 w-6 absolute left-full translate-x-[-50%] text-violet-600">

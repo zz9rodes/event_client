@@ -5,7 +5,7 @@
     >
       <div class="flex items-center gap-4">
         <router-link :to="{ name: 'home' }">
-          <img src="../../../public/logo.PNG" class="h-12" alt="" />
+          <img src="/logo.png" class="h-12" alt="" />
         </router-link>
 
         <router-link :to="{ name: 'events-list' }">
