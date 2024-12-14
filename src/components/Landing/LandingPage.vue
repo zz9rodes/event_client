@@ -5,7 +5,7 @@
     >
       <div class="flex items-center gap-4">
         <router-link :to="{ name: 'home' }">
-          <img src="/logo.png" class="h-12" alt="" />
+          <img :src="logoImage" class="h-12" alt="" />
         </router-link>
 
         <router-link :to="{ name: 'events-list' }">
@@ -232,6 +232,8 @@ import { ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 import Caroussel from "@/components/global/Caroussel.vue";
 import AppLink from "../global/AppLink.vue";
+import logoImage from '@/assets/logo.png'
+
 
 const isMobileMenuOpen = ref(false);
 
