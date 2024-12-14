@@ -29,7 +29,7 @@
         <div class="flex items-center px-2 py-3 hover:bg-violet-50"
           :class="isExpanded ? 'justify-start' : 'justify-center'">
           <img class="w-8 h-8 rounded-full"
-            src="https://i.pinimg.com/474x/48/28/6b/48286ba9a0cc30a49005693d6134f82b.jpg" alt="User avatar" />
+            :src="currrentUser.avatarUrl" alt="User avatar" />
           <div :class="[
             'ml-3 transition-all duration-300',
             isExpanded
@@ -56,7 +56,7 @@
             :is-expanded="false" :is-active="isActive(item.name)" class="flex-1" />
           <button @click="toggleUserMenu()" class="flex flex-col items-center justify-center flex-1">
             <img class="w-6 h-6 rounded-full"
-              src="https://i.pinimg.com/474x/48/28/6b/48286ba9a0cc30a49005693d6134f82b.jpg" alt="User avatar" />
+              :src="currrentUser.avatarUrl" alt="User avatar" />
             <span class="mt-1 text-xs">Profile</span>
           </button>
         </div>
@@ -65,16 +65,16 @@
 
     <!-- Mobile User Menu -->
     <Transition name="fade">
-      <div v-if="isUserMenuOpen" @click.self="logout"
+      <div v-if="isUserMenuOpen" @click.self="toggleUserMenu()"
         class="fixed inset-0 bg-bacdrop_modal bg-opacity-90 backdrop-blur z-[470] ">
         <div class="absolute right-0 p-4 mx-2 bg-white rounded-t-lg top-5">
           <div class="flex justify-between">
             <div class="flex items-center mb-4">
               <img class="w-10 h-10 mr-3 rounded-full"
-                src="https://i.pinimg.com/474x/48/28/6b/48286ba9a0cc30a49005693d6134f82b.jpg" alt="User avatar" />
+                :src="currrentUser.avatarUrl" alt="User avatar" />
               <div>
-                <p class="text-sm font-medium text-gray-700">John Doe</p>
-                <p class="text-xs text-gray-500">john.doe@example.com</p>
+                <p class="text-sm font-medium text-gray-700">{{currrentUser.firstName}} {{currrentUser.lastName}}</p>
+                <p class="text-xs text-gray-500">{{ currrentUser.email}}</p>
               </div>
             </div>
             <span @click="RouteChangeEvent(navItems[3])">
@@ -103,11 +103,16 @@ import { ref, computed, onMounted, onBeforeUnmount } from "vue";
 import SidebarItem from "./SidebarItem.vue";
 import { navItems } from './NavItem'
 import { RouterView, useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/auth";
+
+
+const auth=useAuthStore()
 
 const router = useRouter()
 
 const isExpanded = ref(true);
 const currentRoute = ref("events");
+const currrentUser=auth.user
 const isUserMenuOpen = ref(false);
 
 
@@ -123,8 +128,10 @@ const toggleUserMenu = () => {
   isUserMenuOpen.value = !isUserMenuOpen.value;
 };
 
-const logout = () => {
-  isUserMenuOpen.value = false;
+const logout = async () => {
+  // isUserMenuOpen.value = false;
+  await auth.logout()
+  router.push('/auth/login')
 };
 
 const updateDimensions = () => {

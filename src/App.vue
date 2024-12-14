@@ -15,6 +15,7 @@ import { useModalStore } from './stores/modal';
 import { Toast } from 'primevue';
 import { useToast } from "primevue/usetoast";
 import { useRouter } from 'vue-router';
+import { onBeforeUnmount } from 'vue';
 const toast = useToast()
 
 
@@ -27,7 +28,9 @@ const showToast = (severity, summary = '', detail) => {
 
 // Rendre la méthode disponible globalement
 window.$toast = showToast;
-
+onBeforeUnmount(()=>{
+   alert("onBeforeUnmount")
+})
 </script>
 
 <style scoped></style>

@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-.p-carousel-indicator-active 
+/* .p-carousel-indicator-active 
 .p-carousel-indicator-button
 {
     background: #7c3aed !important;
-    /* @apply text-violet-600 !important */
-}
+    @apply text-violet-600 !important
+} */
 
 
 .fade-enter-active,

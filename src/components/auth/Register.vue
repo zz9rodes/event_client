@@ -133,7 +133,7 @@ const formData = reactive({
     password: '',
     phoneNumber: '',
     dob: '',
-    avatar: "https://i.pinimg.com/736x/4a/26/cd/4a26cdcd5cbd89187dd280d8eff0a9d3.jpg",
+    avatarUrl: "https://i.pinimg.com/736x/4a/26/cd/4a26cdcd5cbd89187dd280d8eff0a9d3.jpg",
     address: '',
     location:{
         lat:"0",
@@ -165,7 +165,7 @@ const handleFileUpload = async (e) => {
                 title: data.file.$id,
                 type: data.file.mimeType
             };
-            formData.avatar = newFile.url;
+            formData.avatarUrl = newFile.url;
             toast.add({ severity: 'success', summary: 'Success', detail: data.message, life: 3000 });
         }
         else {

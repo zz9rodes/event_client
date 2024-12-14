@@ -15,6 +15,7 @@ import EventPages from '@/views/Events/EventPages.vue';
 import EventSubcribtionPage from '@/views/Events/EventSubcribtionPage.vue';
 import AppProfile from '@/components/global/AppProfile.vue';
 import MySubcribtionList from '@/views/Subcriptions/MySubcribtionList.vue';
+import HomeListeEventsPages from '@/views/home/HomeListeEventsPages.vue';
 import { ref } from 'vue';
 // 
 
@@ -53,6 +54,11 @@ const router = createRouter({
           name: 'send-mail',
           component: SendMail,
         },
+        {
+          path: 'events-list',
+          name: "events-list",
+          component: HomeListeEventsPages
+        },
       ],
     },
     {
@@ -62,6 +68,7 @@ const router = createRouter({
         requiresAuth: true
       },
       component: MainLayout,
+      redirect:{name:'events'},
       children: [
         {
           path: 'profile',
@@ -108,7 +115,7 @@ const router = createRouter({
         {
           path: 'my-subscribtions',
           name: 'subscribtions',
-          component: MySubcribtionList /*EventDetailsPage*/,          
+          component: MySubcribtionList /*EventDetailsPage*/,
         }
       ]
     }

@@ -1,83 +1,53 @@
 <template>
-    <Carousel class="" :value="products" :numVisible="2" :numScroll="1" :responsiveOptions="responsiveOptions" circular
-        :autoplayInterval="3000">
-        <template #item="slotProps">
-            <div class="p-4 m-2 rounded border-surface-200 dark:border-surface-700">
-                <div class="mb-4">
-                    <div class="relative mx-auto">
-                        <img :src="'https://i.pinimg.com/474x/7b/35/d7/7b35d705acbf5f92cb94a20b2ce91f41.jpg'"
-                            :alt="slotProps.data.name" class="rounded " />
-                    </div>
-                </div>
-            </div>
-        </template>
-    </Carousel>
+ <div class="carousel carousel-center rounded-box bg-blue-950 max-w-[85%]  p-4">
+  <div id="item1" class="carousel-item relative">
+    <h1 class="text-3xl absolute top-0">
+        rodes
+    </h1>
+    <img src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp" alt="Pizza" />
+  </div>
+  <div id="item2" class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
+      alt="Pizza" />
+  </div>
+  <div id="item3" class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
+      alt="Pizza" />
+  </div>
+  <div id="item4" class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp"
+      alt="Pizza" />
+  </div>
+  <div id="item5" class="carousel-item">
+    <img src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp" alt="Pizza" />
+  </div>
+  <div id="item6" class="carousel-item">
+    <img src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp" alt="Pizza" />
+  </div>
+  <div id="item7" class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
+      alt="Pizza" />
+  </div>
+</div>
+<div class="flex w-full justify-center gap-2 py-2">
+  <a href="#item1" class="btn btn-xs">1</a>
+  <a href="#item2" class="btn btn-xs">2</a>
+  <a href="#item3" class="btn btn-xs">3</a>
+  <a href="#item4" class="btn btn-xs">4</a>
+  <a href="#item5" class="btn btn-xs">5</a>
+  <a href="#item6" class="btn btn-xs">6</a>
+  <a href="#item7" class="btn btn-xs">7</a>
+</div>
 </template>
 
-<script setup>
-import { ref, onMounted } from "vue";
-
-import Carousel from 'primevue/carousel';
-
-
-// Simulated ProductService
-const ProductService = {
-    getProductsSmall() {
-        return new Promise((resolve) => {
-            // Simulated product data
-            const products = [
-                { name: 'Product 1', image: 'product1.jpg', price: 29.99, inventoryStatus: 'INSTOCK' },
-                { name: 'Product 2', image: 'product2.jpg', price: 39.99, inventoryStatus: 'LOWSTOCK' },
-                { name: 'Product 3', image: 'product3.jpg', price: 19.99, inventoryStatus: 'OUTOFSTOCK' },
-                { name: 'Product 4', image: 'product4.jpg', price: 49.99, inventoryStatus: 'INSTOCK' },
-                { name: 'Product 5', image: 'product5.jpg', price: 59.99, inventoryStatus: 'INSTOCK' },
-                { name: 'Product 6', image: 'product6.jpg', price: 89.99, inventoryStatus: 'LOWSTOCK' },
-                { name: 'Product 7', image: 'product7.jpg', price: 99.99, inventoryStatus: 'INSTOCK' },
-                { name: 'Product 8', image: 'product8.jpg', price: 79.99, inventoryStatus: 'OUTOFSTOCK' },
-                { name: 'Product 9', image: 'product9.jpg', price: 89.99, inventoryStatus: 'INSTOCK' },
-            ];
-            resolve(products);
-        });
-    }
-};
-
-const products = ref([]);
-const responsiveOptions = ref([
-    {
-        breakpoint: '1400px',
-        numVisible: 2,
-        numScroll: 1
-    },
-    {
-        breakpoint: '1199px',
-        numVisible: 3,
-        numScroll: 1
-    },
-    {
-        breakpoint: '767px',
-        numVisible: 2,
-        numScroll: 1
-    },
-    {
-        breakpoint: '575px',
-        numVisible: 1,
-        numScroll: 1
-    }
-]);
-
-onMounted(() => {
-    ProductService.getProductsSmall().then((data) => (products.value = data.slice(0, 9)));
-});
-
-
+<script set>
 
 </script>
 
+<style>
 
-<style scoped>
-/* .p-carousel-indicator-active 
-.p-carousel-indicator-button
-{
-    background: red !important;
-} */
 </style>

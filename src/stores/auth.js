@@ -2,8 +2,10 @@ import { ref, unref } from 'vue';
 import { defineStore } from 'pinia';
 
 export const useAuthStore = defineStore('auth', () => {
-  const user = ref(null);
+  const user = localStorage.getItem('user') ? ref(JSON.parse(localStorage.getItem('user'))) : ref(null);
   const token = ref(localStorage.getItem('token'));
+
+  
 
   async function api(method, url, payload = {}, notify = true) {
     try {
@@ -65,13 +67,14 @@ export const useAuthStore = defineStore('auth', () => {
 
   async function logout() {
     try {
-      await api('DELETE', '/logout', {}, false);
+      await api('DELETE', 'auth/logout', {}, false);
     } catch (error) {
       console.error('Erreur de déconnexion:', error);
     } finally {
       token.value = null;
       user.value = null;
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
       window.$toast('info', 'Déconnexion', 'Vous avez été déconnecté');
     }
   }
@@ -94,8 +97,10 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   function authenticate(result) {
-    token.value = result.token;
-    localStorage.setItem('token', result.token);
+    token.value = result.token.token;
+    localStorage.setItem('token', token.value);
+    const {email,firstName,lastName,phoneNumber,avatarUrl}=result.user
+    localStorage.setItem('user', JSON.stringify({email,firstName,lastName,phoneNumber,avatarUrl}));
     user.value = result.user;
   }
 
