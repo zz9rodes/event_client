@@ -12,7 +12,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   async function api(method, url, payload = {}, notify = true) {
     try {
-      const response = await fetch(`http://localhost:3333/api${url}`, {
+      const response = await fetch(`https://tender-painfully-marmoset.ngrok-free.app/api${url}`, {
         method,
         headers: {
           'Content-Type': 'application/json',
