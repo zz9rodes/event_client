@@ -1,7 +1,7 @@
 <template>
     <ListEvents />
     <div class="inline-flex items-center justify-between w-full px-8 py-6 ">
-        <h1 class="text-xl font-bold md:text-3xl text-violet-600">Your Comapnies
+        <h1 class="container mx-auto text-xl font-bold font-nunito md:text-3xl text-violet-600">Your Comapnies
 
         </h1>
         <div>

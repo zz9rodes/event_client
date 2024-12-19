@@ -1,5 +1,8 @@
 import { ref, unref } from 'vue';
 import { defineStore } from 'pinia';
+import { useRouter } from 'vue-router';
+
+const router=useRouter()
 
 export const useAuthStore = defineStore('auth', () => {
   const user = localStorage.getItem('user') ? ref(JSON.parse(localStorage.getItem('user'))) : ref(null);
@@ -16,7 +19,7 @@ export const useAuthStore = defineStore('auth', () => {
           'Authorization': `Bearer ${token.value}`,
           'Access-Control-Allow-Origin': '*'
         },
-        credentials: 'include', // Pour gérer les cookies si nécessaire
+        // credentials: 'include', // Pour gérer les cookies si nécessaire
         body: method !== 'GET' ? JSON.stringify(unref(payload)) : null
       });
 
@@ -31,6 +34,9 @@ export const useAuthStore = defineStore('auth', () => {
           if (notify) window.$toast('error', errorData.errorMessage, 'error');
         } else if (response.status === 401) {
           if (notify) window.$toast('error', 'Non autorisé', 'Veuillez vous reconnecter');
+          logout()
+
+          router.push({name:'login'})
         } else {
           if (notify) window.$toast('error', errorData.ErrorMessage, 'Veuillez vous reconnecter');
         }
@@ -75,7 +81,7 @@ export const useAuthStore = defineStore('auth', () => {
       user.value = null;
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      window.$toast('info', 'Déconnexion', 'Vous avez été déconnecté');
+      window.$toast('success', 'Déconnexion', 'Vous avez été déconnecté');
     }
   }
 

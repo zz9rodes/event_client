@@ -1,6 +1,6 @@
    <template>
     <div class="container px-4 py-8 mx-auto">
-      <h2 class="mb-6 text-2xl font-bold text-gray-800">Upcoming Events</h2>
+      <h2 class="mb-6 text-2xl text-gray-800 font-nunito">Upcoming Events</h2>
       <Drawer v-model:visible="visible" position="right" :showCloseIcon=false>
         <EventDetails :event="event" />
       </Drawer>

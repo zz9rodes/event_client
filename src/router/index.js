@@ -137,7 +137,7 @@ router.beforeEach(async (to, from, next) => {
     } else {
       next({ name: 'login' });
     }
-  } else if (((to.name === 'login') || (to.name === 'register')) && isAuthentificated()) {
+  } else if ((to.path.includes('auth') ) && isAuthentificated()) {
     next({ name: 'events' });
   } else {
     next();

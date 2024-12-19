@@ -42,7 +42,7 @@
 
           <div class="text-sm">
 
-            <AppLink :to="{ name: 'reset-password' }" name=" Forgot your password?"
+            <AppLink :to="{ name: 'send-mail' }" name=" Forgot your password?"
               class="font-medium text-violet-600 hover:text-violet-500" />
           </div>
         </div>

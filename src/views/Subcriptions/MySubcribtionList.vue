@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-5xl py-6 px-2">My Subcribions</h1>
+    <h1 class="container px-2 py-6 mx-auto text-4xl font-bold text-violet-600 font-nunito">My Subcribions</h1>
         <SubcribtionList :events="susbscribtions"/>
   </div>
 </template>
