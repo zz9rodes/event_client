@@ -135,7 +135,7 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref,onMounted } from 'vue'
 import WordMap from '../global/WordMap.vue';
 import Gallery from '../global/Gallery.vue';
 import { AppwriteuploadFile } from '@/app_write/files';
@@ -145,15 +145,17 @@ import { useAuthStore } from '@/stores/auth';
 import { useRoute, useRouter } from 'vue-router';
 import { hasEmptyFields } from '@/utils';
 
+
 const route = useRoute()
 const router=useRouter()
 
 const modal = useModalStore()
 
-const auth = useAuthStore()
+
+const auth=useAuthStore()
 
 
-const categories = [{ id: 1, name: 'Music' }, { id: 2, name: 'Sports' }, { id: 3, name: 'Technology' }, { id: 4, name: 'Art' }, { id: 5, name: 'Food' }]
+const categories = ref([])/* [{ id: 1, name: 'Music' }, { id: 2, name: 'Sports' }, { id: 3, name: 'Technology' }, { id: 4, name: 'Art' }, { id: 5, name: 'Food' }]*/
 const markePosition = null
 
 const nowDate = formatDateToYYYYMMDD()
@@ -244,4 +246,23 @@ const submitEvent = async () => {
     }
 
 }
+
+const LoadsCategories= async ()=>{
+  console.log("on charge  les categories")
+  const data=await  auth.api('GET','/category/')
+  if(data.valid){
+    data.result.forEach((category,index) => {
+            category.id=index+1
+    });
+    categories.value=data.result
+  }
+  else{
+    window.$toast('error', data.errorMessage,data.errorMessage);
+  }
+  console.log(data);
+}
+
+onMounted( async ()=>{
+    await LoadsCategories()
+})
 </script>

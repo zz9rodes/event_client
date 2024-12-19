@@ -1,6 +1,6 @@
 <template>
-    <div class="min-h-screen bg-gray-50  sm:pb-0">
-        <div class="px-4 py-8 mx-auto  pb-16 max-w-7xl sm:px-6 lg:px-8">
+    <div class="min-h-screen bg-gray-50 sm:pb-0">
+        <div class="px-4 py-8 pb-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="mb-8">
                 <div class="relative h-[500px] rounded-lg overflow-hidden mb-4">
                     <img v-if="event.files && event.files.length > 0" :src="event.files[0].url" alt="Event venue" class="object-cover w-full h-full" />
@@ -117,6 +117,7 @@ const handlePreviewEventFiles = (index) => {
 }
 
 onMounted(() => {
+    // alert("on veut charger les details")
     LoadsEvent()
 })
 
@@ -126,7 +127,6 @@ const LoadsEvent = async () => {
     const company_id = route.params.company_id
     const event_id = route.params.event_id
     const data = await auth.api('GET', `/company/${company_id}/event/${event_id}/get`)
-
     if (data.valid) {
         console.log(data)
         event.value = data.result

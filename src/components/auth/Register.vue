@@ -52,20 +52,13 @@
                         class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
                         v-model="formData.dob" />
                     </div>
-                    <!-- <div>
-                        <label for="adress-location" class="sr-only">Adress Location</label>
-                        <input id="adress-location" name="Adress" type="text" placeholder="Adress" required
-                            class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            v-model="formData.address" />
-                    </div> -->
                 </div>
 
                 <div>
-
                     <div class="flex items-center justify-between mt-1">
                         <label for="avatar" class="cursor-pointer ">
                             <span class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
-                                <img v-if="formData.avatar != null" :src="formData.avatar" alt="" class="w-full h-full ">
+                                <img v-if="formData.avatarUrl != null" :src="formData.avatarUrl" alt="" class="w-full h-full ">
 
                                 <svg v-else class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                                     <path
@@ -179,6 +172,8 @@ const handleFileUpload = async (e) => {
 }
 
 const handleSubmit =  async () => {
+    console.log("1")
+    console.log(formData)
     modal.showModal()
     if((!formData.address || formData.address=='') && (formData.location.lat!=0 || formData.location.long!=0)){
       await   fetchLocationInfo(formData.location.lat,formData.location.long)

@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-7xl">
       <div class="p-8">
         <div class="flex items-start justify-between mb-8">
-          <h1 class="text-2xl font-semibold text-gray-900">Profile</h1>
+          <h1 class="text-2xl font-bold text-violet-600 font-nunito">Profile</h1>
           <button
             @click.prevent="isOpen = true"
             class="px-4 py-2 text-white transition-colors rounded-lg bg-violet-600 hover:bg-violet-700"

@@ -1,5 +1,5 @@
 <template>
-    <div class="relative">
+    <div class="container relative mx-auto">
       <div class="overflow-x-auto scrollbar-hide">
         <div class="flex p-4 space-x-4 min-w-max">
           <button
@@ -17,7 +17,6 @@
           </button>
         </div>
       </div>
-      <!-- <div class="absolute top-0 bottom-0 right-0 w-8 pointer-events-none bg-gradient-to-l "></div> -->
     </div>
   </template>
   

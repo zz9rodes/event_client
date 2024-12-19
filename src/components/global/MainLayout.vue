@@ -36,7 +36,7 @@
               ? 'opacity-100 w-auto'
               : 'opacity-0 w-0 overflow-hidden',
           ]">
-            <p class="text-sm font-medium text-gray-700">John Doe</p>
+            <p class="text-sm font-medium text-gray-700 truncate">{{ auth.user.firstName  }}</p>
             <p class="text-xs text-gray-500">View Profile</p>
           </div>
         </div>
