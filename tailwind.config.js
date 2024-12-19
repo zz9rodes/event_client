@@ -12,6 +12,10 @@ export default {
           customColor: '#1c1c1e', 
           bacdrop_modal:'rgb(0 0 0 / 7%)'
         },
+        fontFamily:{
+          nunito:["Nunito", 'serif'],
+          suse:["SUSE", 'serif']
+        }
     },
   },
   plugins: [
