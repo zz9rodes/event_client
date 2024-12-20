@@ -3,16 +3,15 @@
         <div class="px-4 py-8 pb-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="mb-8">
                 <div class="relative h-[500px] rounded-lg overflow-hidden mb-4">
-                    <img v-if="event.files && event.files.length > 0" :src="event.files[0].url" alt="Event venue"
-                        class="object-cover w-full h-full" />
+                    <img v-if="event.files && event.files.length > 0" :src="event.files[0].url" alt="Event venue" class="object-cover w-full h-full" />
                 </div>
                 <div class="flex gap-2 overflow-x-auto scrollbar-hide">
                     <template v-for="(file, index) in (event.files || [])" :key="index">
-                        <img v-if="stringContainsIgnoreCase(file.type, 'im')" @click="handlePreviewEventFiles(index)"
-                            :src="file.url" :alt="`files image ${index + 1}`"
+                        <img v-if="stringContainsIgnoreCase(file.type,'im')" @click="handlePreviewEventFiles(index)" :src="file.url"
+                            :alt="`files image ${index + 1}`"
                             class="object-cover w-full h-32 transition-opacity rounded-lg cursor-pointer hover:opacity-75" />
-                        <video autoplay="true" controls v-else-if="stringContainsIgnoreCase(file.type, 'vid')"
-                            @click="handlePreviewEventFiles(index)" :src="file.url" :alt="`files video ${index + 1}`"
+                        <video autoplay="true" controls v-else-if="stringContainsIgnoreCase(file.type,'vid')" @click="handlePreviewEventFiles(index)" :src="file.url"
+                            :alt="`files video ${index + 1}`"
                             class="object-cover w-full h-32 transition-opacity rounded-lg cursor-pointer hover:opacity-75"></video>
                     </template>
                 </div>
@@ -63,15 +62,12 @@
                             </div>
                         </div>
                     </div>
-                    <div>
-                    </div>
                     <div class="flex flex-col" v-for="post in event.posts" :key="post.slug">
                         <CardPostInfo :post="post"></CardPostInfo>
-                    </div>
-                </div>
+                    </div>                </div>
 
-                <div class="lg:col-span-1">
-                    <!-- <div class="grid gap-2 p-6 bg-white shadow-sm ">
+                <!-- <div class="lg:col-span-1">
+                    <div class="grid gap-2 p-6 bg-white shadow-sm rounded-xl">
                         <span type="submit"
                             class="w-full px-4 py-2 transition-colors duration-300 rounded-md text-violet-600 bg-violet-50 hover:bg-violet-100">
                             {{ event.price != 0 ? event.price : event.pricing }}$
@@ -80,18 +76,14 @@
                             class="w-full px-4 py-2 text-white transition-colors duration-300 rounded-md bg-violet-600 hover:bg-violet-700">
                             Join Now
                         </button>
-                    </div> -->
-
-                    <FormCreatePost></FormCreatePost>
-                </div>
+                    </div>
+                </div> -->
             </div>
-
         </div>
     </div>
     <AppModal :is-loader="false" :is-open="isOpen" @close-modal="isOpen = false">
         <div class="preview-img">
-            <img v-if="stringContainsIgnoreCase(preview.type, 'im')" class="rounded max-w-80 sm:max-w-xl lg:max-w-4xl"
-                :src="preview.url" alt="">
+            <img v-if="stringContainsIgnoreCase(preview.type,'im')"  class="rounded max-w-80 sm:max-w-xl lg:max-w-4xl" :src="preview.url" alt="">
             <video autoplay controls v-if="preview.type === 'video'" class="rounded w-80 sm:w-xl lg:w-4xl h-5/6">
                 <source :src="preview.url">
             </video>
@@ -105,7 +97,6 @@ import AppModal from '@/components/global/AppModal.vue';
 import { useAuthStore } from '@/stores/auth';
 import { useRoute, useRouter } from 'vue-router';
 import { stringContainsIgnoreCase } from '@/utils';
-import FormCreatePost from '@/components/Posts/FormCreatePost.vue';
 import CardPostInfo from '@/components/Posts/CardPostInfo.vue';
 
 const router = useRouter()
@@ -135,14 +126,12 @@ onMounted(() => {
 
 const LoadsEvent = async () => {
     console.log(route.params);
-
-    const company_id = route.params.company_id
+    
     const event_id = route.params.event_id
-    const data = await auth.api('GET', `/company/${company_id}/event/${event_id}/get`)
+    const data = await auth.api('GET', `/events/${event_id}`)
     if (data.valid) {
         console.log(data)
         event.value = data.result
-
     } else {
         console.error(data)
     }
@@ -156,9 +145,7 @@ const LoadsEvent = async () => {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .scrollbar-hide {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 </style>
