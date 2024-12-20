@@ -36,7 +36,7 @@
               <img
                 :src="profile?.avatarUrl"
                 :alt="profile.name"
-                class="object-cover w-32 h-32 rounded-xl"
+                class="object-cover w-32 h-32 p-1 border rounded-xl border-violet-100"
               />
               <div class="space-y-4">
                 <div>
