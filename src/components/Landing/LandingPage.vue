@@ -4,8 +4,15 @@
       class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-white bg-opacity-90 backdrop-blur-sm"
     >
       <div class="flex items-center gap-4">
-        <router-link :to="{ name: 'home' }">
+        <!-- <router-link :to="{ name: 'home' }">
           <img :src="logoImage" class="h-12" alt="" />
+        </router-link> -->
+
+        <router-link :to="{name:'home'}" class="flex items-center gap-1 ">
+          <img :src="logoImage" class="h-12" alt="">
+          <h1 class="font-bold text-1xl text-violet-600">
+            Event4You
+          </h1>
         </router-link>
 
         <router-link :to="{ name: 'events-list' }">
@@ -143,7 +150,7 @@
       </router-link>
     </section>
 
-    <!-- <section class="max-w-4xl py-2 mx-auto flex items-center justify-center flex-col">
+    <!-- <section class="flex flex-col items-center justify-center max-w-4xl py-2 mx-auto">
       <Caroussel />
     </section> -->
 
