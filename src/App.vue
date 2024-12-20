@@ -1,6 +1,6 @@
 <template>
    <Toast />
-   <div>
+   <div class=" font-nunito">
       <RouterView />
       <AppModal :is-open="modal.isOpen">
 

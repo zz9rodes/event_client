@@ -2,6 +2,7 @@
     <div v-if="events.length > 0" class="container px-4 py-8 mx-auto">
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         <div v-for="event in events" :key="event.slug"
+        @click="HandlerRouteChange({name:'subscribtion_details',params:{event_id:event.slug}})"
           class="overflow-hidden transition-transform duration-300 bg-white rounded-none shadow-lg cursor-pointer group hover:scale-105">
           <div class="relative h-64">
             <img :src="event.files[0].url" :alt="event.name" class="object-cover w-full h-full" />
@@ -21,12 +22,12 @@
       </div>
       <div></div>
     </div>
-    <!-- <EmptyEvent v-else></EmptyEvent> -->
+    <EmptyEvent v-else ></EmptyEvent>
   </template>
   
   <script setup>
   import { ref, defineProps } from "vue";
-//   import EmptyEvent from "./EmptyEvent.vue";
+  import EmptyEvent from "./Events/EmptyEvent.vue";
   import { useRouter, useRoute } from "vue-router";
   
   const router = useRouter()

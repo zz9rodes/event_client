@@ -7,7 +7,7 @@
     ]">
       <!-- Toggle Button -->
       <button class="flex items-center justify-between w-full p-2 rounded-2xl hover:bg-gray-50">
-        <img :src="logoImage" :class="[isExpanded ? 'size-12' : 'size-8']" alt="" />
+        <img :src="logoImage" :class="[isExpanded ? 'size-12' : 'size-8']" alt="" @click.self="router.push({name:'account'})" />
         <svg @click="toggleSidebar" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
           class="lucide lucide-chevrons-left-right h-6 w-6 absolute left-full translate-x-[-50%] text-violet-600">
@@ -43,10 +43,13 @@
       </div>
     </div>
 
+
+
     <!-- Main Content Area -->
     <div class="flex flex-col flex-1 overflow-hidden">
-      <main class="flex-1 m-2 overflow-x-hidden overflow-y-auto bg-gray-100 pb-14 sm:pb-0">
-        <RouterView />
+      <main class="relative flex-1 m-2 overflow-x-hidden overflow-y-auto bg-gray-100 pb-14 sm:pb-0">
+        <AppGoback class="absolute top-0 left-0 z-30"/>
+        <RouterView class=" mt-9" />
       </main>
 
       <!-- Mobile Navigation Bar -->
@@ -105,6 +108,7 @@ import logoImage from '@/assets/logo.png'
 import { navItems } from './NavItem'
 import { RouterView, useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
+import AppGoback from "./AppGoback.vue";
 
 
 const auth=useAuthStore()
