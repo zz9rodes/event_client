@@ -4,7 +4,7 @@
     <div class="w-full max-w-md space-y-8">
       <div>
         <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
-          Reset your Password
+          Réinitialiser votre mot de passe
         </h2>
 
       </div>
@@ -12,16 +12,16 @@
         <input type="hidden" name="remember" value="true" />
         <div class="-space-y-px rounded-md shadow-sm">
           <div>
-            <label for="email-address" class="sr-only">New password</label>
+            <label for="email-address" class="sr-only">Nouveau mot de passe</label>
             <input id="new-password" name="new-password" type="password" required
               class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-              placeholder="New password" v-model="password" />
+              placeholder="Nouveau mot de passe" v-model="password" />
           </div>
           <div>
-            <label for="password" class="sr-only">Confirm Password</label>
+            <label for="password" class="sr-only">Confirmer le mot de passe</label>
             <input id="confirm-password" name="confirm-password" type="password" required
               class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-              placeholder="confirm-password" v-model="password" />
+              placeholder="Confirmer le mot de passe" v-model="password" />
           </div>
         </div>
 
@@ -37,7 +37,7 @@
                   clip-rule="evenodd" />
               </svg>
             </span>
-            Update
+            Mettre à jour
           </button>
         </div>
       </form>
@@ -58,13 +58,13 @@ const errorMessage = ref('')
 const handleSubmit = () => {
   // Basic validation
   if (!email.value || !password.value) {
-    errorMessage.value = 'Please fill in all fields.'
+    errorMessage.value = 'Veuillez remplir tous les champs.'
     return
   }
 
   console.log('Login attempt with:', { email: email.value, password: password.value })
   errorMessage.value = ''
-  alert('Login successful! (This is a simulation)')
+  alert('Connexion réussie ! (Ceci est une simulation)')
 }
 </script>
 

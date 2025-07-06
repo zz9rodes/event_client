@@ -3,9 +3,9 @@
     <CompanyHeaderDetails :company="settingData" />
     <CompaniesBarMenu :menus="menus"  @change-menu="HandlerChangeMenu"/>
     <div class="">
-      <CompaniesSettings  :company="settingData" v-if="activeview=='Setting'"></CompaniesSettings>
-      <ListCompaniesEvent :events="company.events" v-else-if="activeview=='Events'"></ListCompaniesEvent>
-      <CompaniesAdmins :admins="company.admins" v-else-if="activeview=='Admin'"></CompaniesAdmins>
+      <CompaniesSettings  :company="settingData" v-if="activeview=='Paramètres'"></CompaniesSettings>
+      <ListCompaniesEvent :events="company.events" v-else-if="activeview=='Événements'"></ListCompaniesEvent>
+      <CompaniesAdmins :admins="company.admins" v-else-if="activeview=='Administrateurs'"></CompaniesAdmins>
     </div>
   </div>
 </template>
@@ -23,9 +23,9 @@ import ListCompaniesEvent from '@/components/Events/ListCompaniesEvent.vue';
 import { useAuthStore } from '@/stores/auth';
 
 const menus = ref([
-  { id: 1, name: 'Setting' },
-  { id: 2, name: 'Events' },
-  { id: 3, name: 'Admin' },
+  { id: 1, name: 'Paramètres' },
+  { id: 2, name: 'Événements' },
+  { id: 3, name: 'Administrateurs' },
 ])
 
 const activeview=ref(menus.value[0].name)

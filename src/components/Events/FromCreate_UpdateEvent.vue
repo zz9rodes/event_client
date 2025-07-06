@@ -1,11 +1,11 @@
 <template>
     <div class="grid justify-center min-h-screen px-4 bg-gray-100 sm:px-6 lg:px-8">
         <div class="inline-flex items-center justify-between w-full px-8 py-6 2xl:w-5/6">
-            <h1 class="text-xl font-bold md:text-3xl text-violet-600">Build New Event
+            <h1 class="text-xl font-bold md:text-3xl text-violet-600">Créer un nouvel événement
 
             </h1>
             <div @click="submitEvent">
-                <button class="p-2 px-4 text-white rounded-md bg-violet-600">Save</button>
+                <button class="p-2 px-4 text-white rounded-md bg-violet-600">Enregistrer</button>
             </div>
         </div>
         <div class="p-8 2xl:w-5/6">
@@ -13,18 +13,17 @@
                 <div class="grid grid-cols-1 gap-8 md:grid-cols-2 ">
                     <div class="space-y-6">
                         <div>
-                            <label for="title" class="block text-sm font-medium text-gray-700">Event Name</label>
+                            <label for="title" class="block text-sm font-medium text-gray-700">Nom de l'événement</label>
                             <input id="title" v-model="event.name" type="text" required
                                 class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                                placeholder="Enter event Name" />
+                                placeholder="Entrez le nom de l'événement" />
                         </div>
 
                         <div>
-                            <label for="description" class="block text-sm font-medium text-gray-700">Event
-                                Description</label>
+                            <label for="description" class="block text-sm font-medium text-gray-700">Description de l'événement</label>
                             <textarea id="description" v-model="event.description" rows="4"
                                 class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                                placeholder="Describe your event..."></textarea>
+                                placeholder="Décrivez votre événement..."></textarea>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
@@ -34,24 +33,24 @@
                                     class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm" />
                             </div>
                             <div>
-                                <label for="time" class="block text-sm font-medium text-gray-700">Time</label>
+                                <label for="time" class="block text-sm font-medium text-gray-700">Heure</label>
                                 <input id="time" v-model="event.duration" type="time" required
                                     class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm" />
                             </div>
                         </div>
 
                         <div>
-                            <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
+                            <label for="location" class="block text-sm font-medium text-gray-700">Lieu</label>
                             <input id="location" disabled v-model="event.address" type="text" required
                                 class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                                placeholder="Event Location" />
+                                placeholder="Lieu de l'événement" />
                         </div>
 
                     </div>
 
                     <div class="space-y-6">
                         <div>
-                            <label class="block mb-2 text-sm font-medium text-gray-700">Event Categories</label>
+                            <label class="block mb-2 text-sm font-medium text-gray-700">Catégories d'événement</label>
                             <div class="space-y-2">
                                 <label v-for="category in categories" :key="category"
                                     class="inline-flex items-center mr-4">
@@ -63,23 +62,23 @@
                         </div>
 
                         <div>
-                            <label class="block mb-2 text-sm font-medium text-gray-700">Pricing</label>
+                            <label class="block mb-2 text-sm font-medium text-gray-700">Tarification</label>
                             <div class="space-x-4">
                                 <label class="inline-flex items-center">
                                     <input type="radio" v-model="event.pricing" value="free"
                                         class="w-5 h-5 cursor-pointer form-radio radio checked:bg-violet-600 text-violet-600" />
-                                    <span class="ml-2 text-gray-700">Free</span>
+                                    <span class="ml-2 text-gray-700">Gratuit</span>
                                 </label>
                                 <label class="inline-flex items-center">
                                     <input type="radio" v-model="event.pricing" value="paid"
                                         class="w-5 h-5 cursor-pointer form-radio radio checked:bg-violet-600 text-violet-600" />
-                                    <span class="ml-2 text-gray-700">Paid</span>
+                                    <span class="ml-2 text-gray-700">Payant</span>
                                 </label>
                             </div>
                         </div>
 
                         <div v-if="event.pricing === 'paid'">
-                            <label for="price" class="block text-sm font-medium text-gray-700">Price (Fr)</label>
+                            <label for="price" class="block text-sm font-medium text-gray-700">Prix (Fr)</label>
                             <div class="relative mt-1 rounded-md shadow-sm">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                     <span class="text-gray-500 sm:text-sm">$</span>
@@ -91,15 +90,15 @@
                         </div>
 
                         <div>
-                            <label for="location" class="block text-sm font-medium text-gray-700">places</label>
+                            <label for="location" class="block text-sm font-medium text-gray-700">Places</label>
                             <input id="location" v-model="event.places" type="number" required
                                 class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                                placeholder="Event Location" />
+                                placeholder="Nombre de places" />
                         </div>
 
                         <div>
                             <label for="file-upload" class="block mb-2 text-sm font-medium text-gray-700">
-                                Event Files
+                                Fichiers de l'événement
                             </label>
 
                             <div class="flex items-center justify-center w-full">
@@ -112,9 +111,9 @@
                                                 d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                         </svg>
                                         <p class="mb-2 text-sm text-gray-500">
-                                            <span class="font-semibold">Click to upload</span> or drag and drop
+                                            <span class="font-semibold">Cliquez pour télécharger</span> ou glissez-déposez
                                         </p>
-                                        <p class="text-xs text-gray-500">PNG, JPG, PDF up to 10MB</p>
+                                        <p class="text-xs text-gray-500">PNG, JPG, PDF jusqu'à 10MB</p>
                                     </div>
                                     <input id="file-upload" type="file" accept="image/* , video/mp4" class="hidden"
                                         @change="handleFileUpload" multiple maxlength="2" />
@@ -123,7 +122,7 @@
                         </div>
 
                         <div v-if="event.files.length > 0" class="mt-4">
-                            <h3 class="mb-2 text-lg font-medium text-gray-900">Attached Files:</h3>
+                            <h3 class="mb-2 text-lg font-medium text-gray-900">Fichiers joints :</h3>
                             <Gallery :images="event.files" :removable="true" />
                         </div>
                     </div>

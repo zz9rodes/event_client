@@ -1,6 +1,6 @@
 <template>
     <ListEventSearchBar />
-    <h1 class="container pb-4 mx-auto text-sm font-bold capitalize sm:text-xl md:text-3xl text-violet-600 font-nunito">Find the perfect Events one for you!
+    <h1 class="container pb-4 mx-auto text-sm font-bold capitalize sm:text-xl md:text-3xl text-violet-600 font-nunito">Trouvez l'événement parfait pour vous !
     </h1>
     <CategoryBarEvent  :categories="categories"/>
     <ListCardEvent  :events="events"></ListCardEvent>

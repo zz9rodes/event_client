@@ -1,8 +1,7 @@
-
 <template>
     <div class="flex justify-center card">
         <Toast />
-        <Button label="Show" @click="show()" />
+        <Button label="Afficher" @click="show()" />
     </div>
 </template>
 
@@ -13,6 +12,6 @@ import { Toast,Button } from 'primevue';
 const toast = useToast();
 
 const show = () => {
-    toast.add({ severity: 'info', summary: 'Info', detail: 'Message Content'});
+    toast.add({ severity: 'info', summary: 'Information', detail: 'Contenu du message'});
 };
 </script>

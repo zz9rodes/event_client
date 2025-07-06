@@ -5,49 +5,49 @@
         <div class="w-full max-w-md space-y-8">
             <div>
                 <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
-                    Create your account
+                    Créer votre compte
                 </h2>
                 <p class="mt-2 text-sm text-center text-gray-600">
-                    Or
+                    Ou
 
                     <AppLink class="font-medium text-violet-600 hover:text-violet-500"
-                        name="sign in to your existing account" :to="{ name: 'login' }" />
+                        name="connectez-vous à votre compte existant" :to="{ name: 'login' }" />
                 </p>
             </div>
             <form class="mt-8 space-y-6" @submit.prevent="handleSubmit">
                 <div class="-space-y-px rounded-md shadow-sm">
                     <div>
-                        <label for="first-name" class="sr-only">First Name</label>
+                        <label for="first-name" class="sr-only">Prénom</label>
                         <input id="first-name" name="firstName" type="text" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            placeholder="First Name" v-model="formData.firstName" />
+                            placeholder="Prénom" v-model="formData.firstName" />
                     </div>
                     <div>
-                        <label for="last-name" class="sr-only">Last Name</label>
+                        <label for="last-name" class="sr-only">Nom</label>
                         <input id="last-name" name="lastName" type="text" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            placeholder="Last Name" v-model="formData.lastName" />
+                            placeholder="Nom" v-model="formData.lastName" />
                     </div>
                     <div>
-                        <label for="email-address" class="sr-only">Email address</label>
+                        <label for="email-address" class="sr-only">Adresse e-mail</label>
                         <input id="email-address" name="email" type="email" autocomplete="email" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            placeholder="Email address" v-model="formData.email" />
+                            placeholder="Adresse e-mail" v-model="formData.email" />
                     </div>
                     <div>
-                        <label for="password" class="sr-only">Password</label>
+                        <label for="password" class="sr-only">Mot de passe</label>
                         <input id="password" name="password" type="password" autocomplete="new-password" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            placeholder="Password" minlength="9" v-model="formData.password" />
+                            placeholder="Mot de passe" minlength="9" v-model="formData.password" />
                     </div>
                     <div>
-                        <label for="phone" class="sr-only">Phone</label>
+                        <label for="phone" class="sr-only">Téléphone</label>
                         <input id="phone" name="phone" type="tel" autocomplete="tel" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            placeholder="Phone" v-model="formData.phoneNumber" />
+                            placeholder="Téléphone" v-model="formData.phoneNumber" />
                     </div>
                     <div>
-                        <label for="date-of-birth" class="sr-only">Date of Birth</label>
+                        <label for="date-of-birth" class="sr-only">Date de naissance</label>
                         <input id="date-of-birth" name="dateOfBirth" type="date" required
                         class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
                         v-model="formData.dob" />
@@ -73,7 +73,7 @@
 
                             <span class="flex items-center" v-if="!isAllowsLocation">
                                 <p class="text-sm ">
-                                    use your location ? 
+                                    Utiliser votre localisation ? 
                                 </p>
                                 <input type="checkbox" v-model="allowsLocation" @change="getGeolocation"
                             class="toggle toggle-violet-600 checked:text-violet-600" />
@@ -93,7 +93,7 @@
                                     d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
                             </svg>
                         </span>
-                        Register
+                        S'inscrire
                     </button>
                 </div>
             </form>
@@ -180,7 +180,7 @@ const handleSubmit =  async () => {
     }
     if (hasEmptyFields(formData)) {
         modal.closeModal()
-        errorMessage.value = 'Please fill in all required fields.'
+        errorMessage.value = 'Veuillez remplir tous les champs requis.'
         return
     }
     const data= await auth.register(formData)
@@ -207,22 +207,22 @@ async function getGeolocation() {
             (error) => {
                 switch (error.code) {
                     case error.PERMISSION_DENIED:
-                        console.error("User denied the request for Geolocation.");
+                        console.error("L'utilisateur a refusé la demande de géolocalisation.");
                         break;
                     case error.POSITION_UNAVAILABLE:
-                        console.error("Location information is unavailable.");
+                        console.error("Les informations de localisation ne sont pas disponibles.");
                         break;
                     case error.TIMEOUT:
-                        console.error("The request to get user location timed out.");
+                        console.error("La demande de localisation a expiré.");
                         break;
                     case error.UNKNOWN_ERROR:
-                        console.error("An unknown error occurred.");
+                        console.error("Une erreur inconnue s'est produite.");
                         break;
                 }
             }
         );
     } else {
-        console.error("Geolocation is not supported by this browser.");
+        console.error("La géolocalisation n'est pas prise en charge par ce navigateur.");
     }
 }
 
@@ -230,7 +230,7 @@ async function fetchLocationInfo(lat, lng) {
     try {
       const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`);
       const data = await response.json();
-      formData.address=data.display_name || 'Unknown location'
+      formData.address=data.display_name || 'Localisation inconnue'
     } catch (error) {
       console.error('Error fetching location data:', error);
      return error

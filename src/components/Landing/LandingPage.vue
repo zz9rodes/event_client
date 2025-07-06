@@ -19,7 +19,7 @@
           <button
             class="hidden px-4 py-2 text-sm transition-colors rounded-full shadow-sm bg-violet-100 text-violet-700 hover:bg-violet-200 sm:inline-block"
           >
-            Events
+            Événements
           </button>
         </router-link>
       </div>
@@ -28,14 +28,13 @@
       <nav class="hidden gap-6 text-sm text-gray-600 sm:flex">
         <AppLink
           class="px-4 py-2 font-medium text-white transition transition-colors ease-in-out delay-150 rounded-full bg-violet-600/70 hover:bg-violet-600"
-          name="Get
-          Account"
+          name="Créer un compte"
           :to="{ name: 'register' }"
         />
 
         <AppLink
           class="px-4 py-2 font-medium transition-colors hover:text-violet-700"
-          name="Login"
+          name="Connexion"
           :to="{ name: 'login' }"
         />
       </nav>
@@ -79,27 +78,27 @@
       >
         <nav class="flex flex-col gap-6 p-4 text-lg text-gray-600">
           <AppLink
-            name="Get Account"
+            name="Créer un compte"
             class="px-4 py-2 font-medium text-white transition transition-colors ease-in-out delay-150 rounded-full bg-violet-600/70 hover:bg-violet-600"
             :to="{ name: 'register' }"
           />
 
           <AppLink
-            name="Login"
+            name="Connexion"
             class="flex flex-col w-full px-4 py-2 text-sm transition-colors rounded-full shadow-sm bg-violet-100 text-violet-700 hover:bg-violet-200"
             :to="{ name: 'login' }"
           />
           <!-- <button
             class="flex flex-col w-full px-4 py-2 text-sm transition-colors rounded-full shadow-sm bg-violet-100 text-violet-700 hover:bg-violet-200"
           >
-            Events
+            Événements
           </button> -->
 
           <router-link :to="{ name: 'events-list' }">
           <button
           class="flex flex-col w-full px-4 py-2 text-sm transition-colors rounded-full shadow-sm bg-violet-100 text-violet-700 hover:bg-violet-200"
           >
-            Events
+            Événements
           </button>
         </router-link>
         </nav>
@@ -121,14 +120,14 @@
       </div>
 
       <h1 class="mb-8 text-3xl font-bold text-gray-800 lg:text-5xl">
-        Plan your <span class="text-violet-600">event in</span><br />
-        one click!l <span class="text-violet-600">Sign up now!.</span>
+        Planifiez votre <span class="text-violet-600">événement en</span><br />
+        un clic ! <span class="text-violet-600">Inscrivez-vous maintenant !</span>
       </h1>
       <router-link :to="{ name: 'register' }">
         <button
           class="inline-flex items-center gap-2 px-8 py-3 text-white transition-colors rounded-full bg-violet-600 hover:bg-violet-700"
         >
-          Get Started
+          Commencer
           <span class="px-2 py-1 text-xs rounded-full bg-violet-500">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -157,9 +156,9 @@
     <!-- Services Section -->
     <section class="max-w-4xl py-20 mx-auto">
       <h2 class="mb-12 text-3xl font-bold text-center">
-        Collaborate with <span class="text-violet-600">brands and agencies</span
+        Collaborez avec des <span class="text-violet-600">marques et agences</span
         ><br />
-        to create impactful <span class="text-violet-600">results.</span>
+        pour créer des <span class="text-violet-600">résultats impactants.</span>
       </h2>
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
         <div
@@ -200,20 +199,20 @@
         </span>
       </div>
       <h2 class="mb-8 text-xl font-bold md:text-2xl lg:text-4xl">
-        Tell me about your Favorite<br />
-        Categrogies
+        Parlez-moi de vos<br />
+        Catégories préférées
       </h2>
 
       <div class="flex justify-center h-10 gap-4 lg:h-14">
         <button
           class="px-3 py-1 text-sm font-semibold transition-colors bg-white rounded-full text-violet-700 lg:px-8 lg:py-3 hover:bg-gray-100"
         >
-          Email Me
+          Contactez-moi
         </button>
         <button
           class="px-3 py-1 text-sm transition-colors border-2 border-white rounded-full lg:px-8 lg:py-3 hover:bg-white hover:text-violet-700"
         >
-          Go To Votes
+          Voter
         </button>
       </div>
     </section>
@@ -222,7 +221,7 @@
     <footer
       class="flex items-center justify-between py-6 mt-12 text-sm text-gray-600 border-t border-gray-200"
     >
-      <span>© 2024 All rights reserved.</span>
+      <span>© 2024 Tous droits réservés.</span>
       <div class="flex gap-6">
         <a href="#" class="transition-colors hover:text-violet-700">LinkedIn</a>
         <a href="#" class="transition-colors hover:text-violet-700">Dribbble</a>
@@ -251,22 +250,22 @@ const services = [
   {
     title: "UX & UI",
     description:
-      "Designing interfaces that are intuitive, efficient and enjoyable to use",
+      "Conception d'interfaces intuitives, efficaces et agréables à utiliser",
   },
   {
     title: "Web & Mobile App",
     description:
-      "Transforming ideas into exceptional web and mobile app experiences",
+      "Transformation d'idées en expériences web et mobiles exceptionnelles",
   },
   {
-    title: "Design & Creative",
+    title: "Design & Création",
     description:
-      "Crafting visually stunning designs that connect with your audience",
+      "Création de designs visuellement impressionnants qui connectent avec votre audience",
   },
   {
-    title: "Development",
+    title: "Développement",
     description:
-      "Bringing your vision to life with the latest technology and design trends",
+      "Donnez vie à votre vision avec les dernières technologies et tendances de design",
   },
 ];
 </script>

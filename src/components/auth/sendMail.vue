@@ -4,12 +4,12 @@
     <div class="w-full max-w-md space-y-8">
       <div>
         <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
-          Receive Your Account
+          Récupérer votre compte
         </h2>
         <p class="mt-2 text-sm text-center text-gray-600">
-          Or
+          Ou
 
-          <AppLink :to="{ name: 'login' }" name="Go to login" class="font-medium text-violet-600 hover:text-violet-500" />
+          <AppLink :to="{ name: 'login' }" name="Aller à la connexion" class="font-medium text-violet-600 hover:text-violet-500" />
 
         </p>
       </div>
@@ -17,10 +17,10 @@
         <input type="hidden" name="remember" value="true" />
         <div class="-space-y-px rounded-md shadow-sm">
           <div>
-            <label for="email-address" class="sr-only">Email address</label>
+            <label for="email-address" class="sr-only">Adresse e-mail</label>
             <input id="email-address" name="email" type="email" autocomplete="email" required
               class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-              placeholder="Email address" v-model="email" />
+              placeholder="Adresse e-mail" v-model="email" />
             <div v-if="errorMessage" class="mt-4 text-sm text-center text-red-600">
               {{ errorMessage }}
             </div>
@@ -39,7 +39,7 @@
                   clip-rule="evenodd" />
               </svg>
             </span>
-            Send
+            Envoyer
           </button>
         </div>
       </form>

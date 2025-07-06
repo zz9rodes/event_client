@@ -7,37 +7,37 @@
             <form class="mt-8 space-y-6" @submit.prevent="handleSubmit">
                 <div class="-space-y-px rounded-md shadow-sm">
                     <div>
-                        <label for="first-name" class="sr-only">First Name</label>
+                        <label for="first-name" class="sr-only">Prénom</label>
                         <input id="first-name" name="firstName" type="text" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            placeholder="First Name" v-model="firstName" />
+                            placeholder="Prénom" v-model="firstName" />
                     </div>
                     <div>
-                        <label for="last-name" class="sr-only">Last Name</label>
+                        <label for="last-name" class="sr-only">Nom</label>
                         <input id="last-name" name="lastName" type="text" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            placeholder="Last Name" v-model="lastName" />
+                            placeholder="Nom" v-model="lastName" />
                     </div>
                     <div>
-                        <label for="email-address" class="sr-only">Email address</label>
+                        <label for="email-address" class="sr-only">Adresse e-mail</label>
                         <input id="email-address" name="email" type="email" autocomplete="email" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            placeholder="Email address" v-model="email" />
+                            placeholder="Adresse e-mail" v-model="email" />
                     </div>
                     <div>
-                        <label for="password" class="sr-only">Password</label>
+                        <label for="password" class="sr-only">Mot de passe</label>
                         <input id="password" name="password" type="password" autocomplete="new-password" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            placeholder="Password" v-model="password" />
+                            placeholder="Mot de passe" v-model="password" />
                     </div>
                     <div>
-                        <label for="phone" class="sr-only">Phone</label>
+                        <label for="phone" class="sr-only">Téléphone</label>
                         <input id="phone" name="phone" type="tel" autocomplete="tel" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                            placeholder="Phone" v-model="phone" />
+                            placeholder="Téléphone" v-model="phone" />
                     </div>
                     <div>
-                        <label for="date-of-birth" class="sr-only">Date of Birth</label>
+                        <label for="date-of-birth" class="sr-only">Date de naissance</label>
                         <input id="date-of-birth" name="dateOfBirth" type="date" required
                             class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
                             v-model="dateOfBirth" />
@@ -73,7 +73,7 @@
                                     d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
                             </svg>
                         </span>
-                        Update Account
+                        Mettre à jour le compte
                     </button>
                 </div>
             </form>
@@ -106,7 +106,7 @@ const handleAvatarChange = (event) => {
 
 const handleSubmit = () => {
     if (!firstName.value || !lastName.value || !email.value || !password.value || !phone.value || !dateOfBirth.value) {
-        errorMessage.value = 'Please fill in all required fields.'
+        errorMessage.value = 'Veuillez remplir tous les champs requis.'
         return
     }   
 }

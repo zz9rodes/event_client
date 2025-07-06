@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-5xl ">Dasshboard</h1>
+    <h1 class="text-5xl ">Tableau de bord</h1>
   </div>
 </template>
 
