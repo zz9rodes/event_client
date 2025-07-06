@@ -31,7 +31,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                                 </svg>
-                                <span class="block text-sm text-gray-600">{{ event.places }} Capacity</span>
+                                <span class="block text-sm text-gray-600">{{ event.places }} Capacité</span>
                             </div>
                             <div class="p-4 text-center rounded-lg bg-violet-50">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-auto mb-2 text-violet-600"
@@ -49,14 +49,14 @@
                         </div>
 
                         <div>
-                            <h3 class="mb-2 text-lg font-semibold text-gray-800">Address</h3>
+                            <h3 class="mb-2 text-lg font-semibold text-gray-800">Adresse</h3>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <p class="mb-1 text-sm text-gray-600">City</p>
+                                    <p class="mb-1 text-sm text-gray-600">Ville</p>
                                     <p class="font-medium text-gray-800">{{ event.address }}</p>
                                 </div>
                                 <div>
-                                    <p class="mb-1 text-sm text-gray-600">Country</p>
+                                    <p class="mb-1 text-sm text-gray-600">Pays</p>
                                     <p class="font-medium text-gray-800">{{ event.address }}</p>
                                 </div>
                             </div>

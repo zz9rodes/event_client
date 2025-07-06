@@ -18,8 +18,8 @@
                     </svg>
                 </span>
             </div>
-            <h3 class="mb-2 font-medium text-gray-900">Nothing to show here</h3>
-            <p class="mb-6 text-sm text-gray-500">start to create an Events
+            <h3 class="mb-2 font-medium text-gray-900">Rien à afficher ici</h3>
+            <p class="mb-6 text-sm text-gray-500">Commencez par créer un événement
             </p>
           
         </div>

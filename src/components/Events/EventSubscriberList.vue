@@ -4,13 +4,13 @@
         <div class="p-4 border-b border-gray-200">
             <div class="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
                 <div>
-                    <h2 class="text-xl font-bold text-violet-600">Event Subscribers</h2>
-                    <p class="text-xs text-gray-500">View all subscribers for this event</p>
+                    <h2 class="text-xl font-bold text-violet-600">Participants à l'événement</h2>
+                    <p class="text-xs text-gray-500">Voir tous les participants à cet événement</p>
                 </div>
                 <div class="flex items-center gap-2">
                     <button
                         class="px-3 py-1.5 text-sm bg-violet-50 text-violet-700 rounded hover:bg-violet-100 transition-colors">
-                        Export
+                        Exporter
                     </button>
                     <!-- <button
                         class="px-3 py-1.5 text-sm bg-violet-600 text-white rounded hover:bg-violet-700 transition-colors">
@@ -24,7 +24,7 @@
         <div class="p-3 border-b border-gray-200">
             <div class="flex flex-col justify-between gap-3 sm:flex-row">
                 <div class="relative flex-grow max-w-md">
-                    <input type="text" v-model="searchQuery" placeholder="Search subscribers..."
+                    <input type="text" v-model="searchQuery" placeholder="Rechercher des participants..."
                         class="w-full pl-8 pr-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-purple-500" />
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-4 w-4 text-gray-400 absolute left-2.5 top-1/2 transform -translate-y-1/2" fill="none"
@@ -47,16 +47,16 @@
                     <tr>
 
                         <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                            Subscriber</th>
+                            Participant</th>
 
                         <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                            Registered At</th>
+                            Inscrit le</th>
                         <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                             Source</th>
                         <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                            Status</th>
+                            Statut</th>
                         <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                            Payment</th>
+                            Paiement</th>
                     </tr>
                 </thead>
 

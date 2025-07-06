@@ -29,7 +29,7 @@ const showToast = (severity, summary = '', detail) => {
 // Rendre la méthode disponible globalement
 window.$toast = showToast;
 onBeforeUnmount(()=>{
-   alert("onBeforeUnmount")
+   alert("Fermeture de l'application")
 })
 </script>
 

@@ -29,9 +29,9 @@ console.log(route);
 
 
 const menus = ref([
-    { id: 1, disabled: false, name: 'Details', route: { 'name': "event-detail", params: { company_id: route.params.company_id, event_id: route.params.event_id } } },
-    { id: 2, disabled: false, name: 'Subcriptions', route: { 'name': "event-subscribtions", params: { company_id: route.params.company_id, event_id: route.params.event_id } } },
-    // { id: 3, disabled: true, name: 'Update', route: { 'name': "companies-admins", params: { company_id: route.params.company_id } } },
+    { id: 1, disabled: false, name: 'Détails', route: { 'name': "event-detail", params: { company_id: route.params.company_id, event_id: route.params.event_id } } },
+    { id: 2, disabled: false, name: 'Inscriptions', route: { 'name': "event-subscribtions", params: { company_id: route.params.company_id, event_id: route.params.event_id } } },
+    // { id: 3, disabled: true, name: 'Modifier', route: { 'name': "companies-admins", params: { company_id: route.params.company_id } } },
 ]
 )
 const selectedMenu = ref(null)

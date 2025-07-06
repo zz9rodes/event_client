@@ -21,12 +21,12 @@
     <div class="container px-2 py-8 mx-auto">
       <!-- Event Details -->
       <div class="mb-8">
-        <h2 class="mb-4 text-2xl font-semibold text-gray-800">Event Details</h2>
+        <h2 class="mb-4 text-2xl font-semibold text-gray-800">Détails de l'événement</h2>
         <p class="text-gray-600">{{ event.description }}</p>
       </div>
       <!-- Date and Time -->
       <div class="mb-8">
-        <h3 class="mb-2 text-xl font-semibold text-gray-800">Date and Time</h3>
+        <h3 class="mb-2 text-xl font-semibold text-gray-800">Date et heure</h3>
         <div class="flex flex-wrap justify-between gap-2">
           <div class="p-2 text-white rounded-md bg-violet-600">
             {{ moment(event.dateTime).format("MMM Do YY") }}
@@ -39,7 +39,7 @@
 
       <!-- Location -->
       <div class="mb-8">
-        <h3 class="mb-2 text-xl font-semibold text-gray-800">Location</h3>
+        <h3 class="mb-2 text-xl font-semibold text-gray-800">Lieu</h3>
         <p class="text-gray-600 flex">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +67,7 @@
 
       <!-- Price -->
       <div class="mb-8">
-        <h3 class="mb-2 text-xl font-semibold text-gray-800">Price</h3>
+        <h3 class="mb-2 text-xl font-semibold text-gray-800">Prix</h3>
         <div class="flex flex-wrap items-start justify-between gap-2">
           <p class="text-2xl font-bold text-violet-600 flex">
             <svg
@@ -94,7 +94,7 @@
             :class="icanSubscribe ? ' bg-violet-600' : ' bg-violet-100'"
             class="p-2 text-white rounded-md"
           >
-            Join Now
+            S'inscrire maintenant
           </button>
         </div>
       </div>
@@ -141,8 +141,8 @@ const HandleSubsribeToEvent = async () => {
     console.log(data);
     window.$toast(
       "success",
-      "Success",
-      "Your Are Suscribe to this Events",
+      "Succès",
+      "Vous êtes inscrit à cet événement",
       5000
     );
     router.push({ name: "subscribtions" });

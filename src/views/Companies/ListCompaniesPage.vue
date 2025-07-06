@@ -1,11 +1,11 @@
 <template>
     <ListEvents />
     <div class="inline-flex items-center justify-between w-full px-8 py-6 ">
-        <h1 class="container mx-auto text-xl font-bold font-nunito md:text-3xl text-violet-600">Your Comapnies
+        <h1 class="container mx-auto text-xl font-bold font-nunito md:text-3xl text-violet-600">Vos entreprises
 
         </h1>
         <div>
-            <button class="p-2 px-4 text-white rounded-md bg-violet-600" @click.prevent="isOpen = true">New</button>
+            <button class="p-2 px-4 text-white rounded-md bg-violet-600" @click.prevent="isOpen = true">Nouveau</button>
         </div>
     </div>
     <AppModal :is-loader="false" :is-open="isOpen" @close-modal="isOpen = false">

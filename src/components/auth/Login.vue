@@ -4,30 +4,28 @@
     <div class="w-full max-w-md space-y-8">
       <div>
         <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
-          Sign in to your account
-
+          Connectez-vous à votre compte
         </h2>
         <p class="mt-2 text-sm text-center text-gray-600">
-          Or
-          <AppLink :to="{ name: 'register' }" name="Get An Account"
+          Ou
+          <AppLink :to="{ name: 'register' }" name="Créer un compte"
             class="font-medium text-violet-600 hover:text-violet-500" />
-          <!-- <router-link >  </router-link> -->
         </p>
       </div>
       <form class="mt-8 space-y-6" @submit.prevent="handleSubmit">
         <input type="hidden" name="remember" value="true" />
         <div class="-space-y-px rounded-md shadow-sm">
           <div>
-            <label for="email-address" class="sr-only">Email address</label>
+            <label for="email-address" class="sr-only">Adresse e-mail</label>
             <input id="email-address" name="email" type="email" autocomplete="email" required
               class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-              placeholder="Email address" v-model="formData.email" />
+              placeholder="Adresse e-mail" v-model="formData.email" />
           </div>
           <div>
-            <label for="password" class="sr-only">Password</label>
+            <label for="password" class="sr-only">Mot de passe</label>
             <input id="password" name="password" type="password" autocomplete="current-password" required
               class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-              placeholder="Password" v-model="formData.password" />
+              placeholder="Mot de passe" v-model="formData.password" />
           </div>
         </div>
 
@@ -36,13 +34,12 @@
             <input id="remember-me" name="remember-me" type="checkbox"
               class="w-4 h-4 border-gray-300 rounded text-violet-600 focus:ring-violet-500" />
             <label for="remember-me" class="block ml-2 text-sm text-gray-900">
-              Remember me
+              Se souvenir de moi
             </label>
           </div>
 
           <div class="text-sm">
-
-            <AppLink :to="{ name: 'send-mail' }" name=" Forgot your password?"
+            <AppLink :to="{ name: 'send-mail' }" name="Mot de passe oublié ?"
               class="font-medium text-violet-600 hover:text-violet-500" />
           </div>
         </div>
@@ -58,7 +55,7 @@
                   clip-rule="evenodd" />
               </svg>
             </span>
-            Sign in
+            Se connecter
           </button>
         </div>
       </form>
@@ -91,7 +88,7 @@ const handleSubmit = async () => {
   modal.showModal()
   if (!formData.email || !formData.password) {
     modal.closeModal()
-    errorMessage.value = 'Please fill in all fields.'
+    errorMessage.value = 'Veuillez remplir tous les champs.'
     return
   }
 

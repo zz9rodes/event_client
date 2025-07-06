@@ -11,6 +11,7 @@ export const useAuthStore = defineStore('auth', () => {
   
 
   async function api(method, url, payload = {}, notify = true) {
+    console.log('router',router)
     try {
       const response = await fetch(`http://localhost:3333/api${url}`, {
         method,
@@ -36,7 +37,7 @@ export const useAuthStore = defineStore('auth', () => {
           if (notify) window.$toast('error', 'Non autorisé', 'Veuillez vous reconnecter');
           logout()
 
-          router.push({name:'login'})
+          window.location.href=`${window.location.origin}/auth/login`
         } else {
           if (notify) window.$toast('error', errorData.ErrorMessage, 'Veuillez vous reconnecter');
         }

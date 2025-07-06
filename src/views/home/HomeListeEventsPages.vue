@@ -1,7 +1,7 @@
 <template>
     <SearchBarEvents/>
     <h1 class="container pt-2 mx-auto font-bold text-violet-600 font-nunito sm:text-xl md:text-3xl px-7">
-        Find Your Events 
+        Trouvez vos événements 
     </h1>
     <HomeListEvent :events="events"></HomeListEvent>
 </template>
