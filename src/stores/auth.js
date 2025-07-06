@@ -13,7 +13,7 @@ export const useAuthStore = defineStore('auth', () => {
   async function api(method, url, payload = {}, notify = true) {
     console.log('router',router)
     try {
-      const response = await fetch(`http://localhost:3333/api${url}`, {
+      const response = await fetch(`https://event-api-1-bbck.onrender.com/api${url}`, {
         method,
         headers: {
           'Content-Type': 'application/json',
